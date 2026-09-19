@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartRemote Pro - Mobile App Design System & Interactive Prototype</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#1E3A8A">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css?v=4">
+</head>
+<body class="theme-dark">
+  <!-- Navigation Header -->
+  <header class="top-nav">
+    <div class="logo-area">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="5" y="2" width="14" height="20" rx="3" />
+          <circle cx="12" cy="6" r="1.5" />
+          <path d="M9 11h6M9 15h6M12 18h.01" />
+        </svg>
+      </div>
+      <div>
+        <h1 class="logo-title">SmartRemote Pro</h1>
+        <span class="logo-badge">Design System &amp; Prototype • MD3</span>
+      </div>
+    </div>
+
+    <div class="nav-controls">
+      <!-- Screen Dropdown Selector -->
+      <div class="control-group">
+        <label for="screen-select">Screen:</label>
+        <select id="screen-select" class="nav-select">
+          <option value="splash">1. Splash Screen</option>
+          <option value="onboarding">2. Onboarding (3 Screens)</option>
+          <option value="home" selected>3. Home Screen</option>
+          <option value="remote">4. Remote Control Screen</option>
+          <option value="voice">5. Voice Control (Hindi/Eng)</option>
+          <option value="macro">6. Macro Creator</option>
+          <option value="airtel">7. Airtel Xstream Remote</option>
+          <option value="settings">8. Settings Screen</option>
+          <option value="widgets">9. Widget Designs (2x2, 4x2, 4x4)</option>
+          <option value="floating">10. Floating Widget Overlay</option>
+          <option value="pcmouse">11. PC Wireless Mouse &amp; Touchpad</option>
+        </select>
+      </div>
+
+      <!-- Bilingual Toggle (Hindi / English) -->
+      <button id="lang-toggle-btn" class="icon-button" style="width: auto; padding: 0 10px; font-size: 12px; font-weight: 600; gap: 4px;" onclick="toggleLanguage()" title="Toggle Hindi / English">
+        <span>🇮🇳</span> EN / हिं
+      </button>
+
+      <!-- Accessibility: High Contrast Toggle -->
+      <button id="contrast-toggle-btn" class="icon-button" onclick="toggleHighContrast()" title="Toggle High Contrast Mode (WCAG AAA)">
+        👁️
+      </button>
+
+      <!-- Accessibility: Large Text Mode -->
+      <button id="large-text-btn" class="icon-button" onclick="toggleLargeText()" title="Toggle Large Text Mode (Elder Mode)">
+        A+
+      </button>
+
+      <!-- Theme Switcher -->
+      <button id="theme-toggle-btn" class="icon-button" title="Toggle Light/Dark Theme">
+        <svg id="theme-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5" />
+          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+        </svg>
+      </button>
+
+      <!-- View Tabs: Prototype vs Design Tokens -->
+      <div class="view-switch">
+        <button id="tab-prototype" class="tab-btn active">📱 Live Prototype</button>
+        <button id="tab-tokens" class="tab-btn">🎨 Design System Specs</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Workspace -->
+  <main class="main-content">
+
+    <!-- PROTOTYPE VIEW CONTAINER -->
+    <div id="prototype-view" class="view-container active">
+      <div class="prototype-wrapper">
+
+        <!-- Screen Navigation Quick Ribbon -->
+        <div class="screen-ribbon">
+          <button class="ribbon-btn" data-screen="splash">1. Splash</button>
+          <button class="ribbon-btn" data-screen="onboarding">2. Onboarding</button>
+          <button class="ribbon-btn active" data-screen="home">3. Home</button>
+          <button class="ribbon-btn" data-screen="remote">4. TV Remote</button>
+          <button class="ribbon-btn" data-screen="voice">5. Voice Control</button>
+          <button class="ribbon-btn" data-screen="macro">6. Macro Creator</button>
+          <button class="ribbon-btn" data-screen="airtel">7. Airtel Xstream</button>
+          <button class="ribbon-btn" data-screen="settings">8. Settings</button>
+          <button class="ribbon-btn" data-screen="widgets">9. Widgets</button>
+          <button class="ribbon-btn" data-screen="floating">10. Floating Overlay</button>
+          <button class="ribbon-btn" data-screen="pcmouse">11. PC Mouse</button>
+        </div>
+
+        <!-- Android Device Phone Shell -->
+        <div class="device-phone">
+          <!-- Physical Bezel & Details -->
+          <div class="phone-speaker"></div>
+          <div class="phone-camera"></div>
+
+          <!-- Status Bar -->
+          <div class="phone-status-bar">
+            <span class="status-time" id="status-clock">21:55</span>
+            <div class="status-icons">
+              <span class="status-badge-lang" onclick="toggleLanguage()" title="Click to toggle Hindi / English">EN / हिं</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                <path d="M12 3C7.5 3 3.7 4.9 1 7.9l11 13.1 11-13.1C20.3 4.9 16.5 3 12 3z"/>
+              </svg>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                <path d="M17 4h-3V2h-4v2H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V6a2 2 0 00-2-2z"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- SCREEN FRAME CONTAINER -->
+          <div class="screen-viewport" id="screen-viewport">
+
+            <!-- 1. SPLASH SCREEN -->
+            <div id="screen-splash" class="app-screen">
+              <div class="splash-body">
+                <div class="splash-logo-pulse">
+                  <div class="splash-logo-inner">
+                    <svg viewBox="0 0 24 24" width="56" height="56" fill="none" stroke="#3B82F6" stroke-width="2">
+                      <rect x="5" y="2" width="14" height="20" rx="3"/>
+                      <circle cx="12" cy="6" r="1.5" fill="#3B82F6"/>
+                      <path d="M9 11h6M9 15h6M12 18h.01"/>
+                    </svg>
+                  </div>
+                </div>
+                <h1 class="splash-title">SmartRemote Pro</h1>
+                <p class="splash-tagline">Control Everything, Everywhere</p>
+                <div class="splash-loader"></div>
+                <span class="splash-version">Version 1.0.0</span>
+              </div>
+            </div>
+
+            <!-- 2. ONBOARDING SCREEN -->
+            <div id="screen-onboarding" class="app-screen">
+              <div class="onboarding-header">
+                <span></span>
+                <button class="skip-btn" onclick="navigateTo('home')">Skip</button>
+              </div>
+              <div class="onboarding-slider" id="onboarding-slider">
+                <!-- Slide 1 -->
+                <div class="onboarding-slide active" data-slide="0">
+                  <div class="illustration-box">
+                    <img src="assets/onboarding_remote.jpg" alt="Universal Remote" class="onboard-img">
+                  </div>
+                  <h2 class="slide-title">Your Universal Remote</h2>
+                  <p class="slide-subtext">Control all devices from one app with 500+ pre-loaded IR brands and WiFi Smart TVs.</p>
+                </div>
+                <!-- Slide 2 -->
+                <div class="onboarding-slide" data-slide="1">
+                  <div class="illustration-box">
+                    <img src="assets/onboarding_voice.jpg" alt="Voice Control" class="onboard-img">
+                  </div>
+                  <h2 class="slide-title">Voice Control in Hindi &amp; English</h2>
+                  <p class="slide-subtext">Just say "TV chalu karo", "Volume badao", or "Open YouTube" without needing an AI assistant.</p>
+                </div>
+                <!-- Slide 3 -->
+                <div class="onboarding-slide" data-slide="2">
+                  <div class="illustration-box">
+                    <img src="assets/onboarding_automation.jpg" alt="Smart Automation" class="onboard-img">
+                  </div>
+                  <h2 class="slide-title">Smart Automation</h2>
+                  <p class="slide-subtext">Create one-tap shortcuts for everything: Movie Night, Gaming, and scheduled routines.</p>
+                </div>
+              </div>
+              <!-- Dots & Controls -->
+              <div class="onboarding-footer">
+                <div class="dots-row">
+                  <span class="dot active" onclick="goToSlide(0)"></span>
+                  <span class="dot" onclick="goToSlide(1)"></span>
+                  <span class="dot" onclick="goToSlide(2)"></span>
+                </div>
+                <div class="onboard-buttons">
+                  <button id="onboard-back" class="btn-secondary" style="display:none;" onclick="prevSlide()">Back</button>
+                  <button id="onboard-next" class="btn-primary" onclick="nextSlide()">Next</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. HOME SCREEN -->
+            <div id="screen-home" class="app-screen active">
+              <!-- Top Bar -->
+              <div class="app-top-bar">
+                <div class="bar-left">
+                  <button class="icon-touch">☰</button>
+                  <span class="bar-title">SmartRemote Pro</span>
+                </div>
+                <div class="bar-right">
+                  <button class="icon-touch" onclick="navigateTo('voice')">🔍</button>
+                  <button class="icon-touch" onclick="navigateTo('settings')">⚙️</button>
+                </div>
+              </div>
+
+              <div class="screen-scrollable">
+                <!-- Voice Search Bar -->
+                <div class="voice-search-bar" onclick="navigateTo('voice')">
+                  <span class="mic-icon">🎤</span>
+                  <span class="search-placeholder">"Say a command..."</span>
+                </div>
+
+                <!-- Quick Actions Horizontal Scroll -->
+                <div class="section-title">Quick Actions:</div>
+                <div class="quick-actions-scroll">
+                  <div class="quick-chip" onclick="navigateTo('remote')">
+                    <span class="chip-icon">📺</span>
+                    <span class="chip-label">TV</span>
+                  </div>
+                  <div class="quick-chip">
+                    <span class="chip-icon">❄️</span>
+                    <span class="chip-label">AC</span>
+                  </div>
+                  <div class="quick-chip">
+                    <span class="chip-icon">💡</span>
+                    <span class="chip-label">Lights</span>
+                  </div>
+                  <div class="quick-chip" onclick="navigateTo('airtel')">
+                    <span class="chip-icon">📡</span>
+                    <span class="chip-label">DTH</span>
+                  </div>
+                  <div class="quick-chip">
+                    <span class="chip-icon">🔊</span>
+                    <span class="chip-label">Soundbar</span>
+                  </div>
+                  <div class="quick-chip" onclick="navigateTo('pcmouse')">
+                    <span class="chip-icon">💻</span>
+                    <span class="chip-label">PC Mouse</span>
+                  </div>
+                </div>
+
+                <!-- My Devices Header -->
+                <div class="section-title" style="margin-top: 18px;">My Devices</div>
+
+                <!-- Device Card 1 -->
+                <div class="device-card" onclick="navigateTo('remote')">
+                  <div class="card-top">
+                    <div class="device-info-left">
+                      <div class="device-icon-box gradient-blue">📺</div>
+                      <div>
+                        <div class="device-name">Living Room TV</div>
+                        <div class="device-desc">Samsung Smart TV</div>
+                      </div>
+                    </div>
+                    <span class="status-dot online" title="Online"></span>
+                  </div>
+                  <div class="card-bottom">
+                    <span class="last-used">Last used: 5 min ago</span>
+                    <button class="card-action-btn">Control Now →</button>
+                  </div>
+                </div>
+
+                <!-- Device Card 2 -->
+                <div class="device-card" onclick="navigateTo('airtel')">
+                  <div class="card-top">
+                    <div class="device-info-left">
+                      <div class="device-icon-box gradient-red">📡</div>
+                      <div>
+                        <div class="device-name">Airtel Xstream</div>
+                        <div class="device-desc">Channel: Star Plus (100)</div>
+                      </div>
+                    </div>
+                    <span class="status-dot online" title="Online"></span>
+                  </div>
+                  <div class="card-bottom">
+                    <span class="last-used">DTH Box • HD Pack</span>
+                    <button class="card-action-btn">Control Now →</button>
+                  </div>
+                </div>
+
+                <!-- Device Card 3 -->
+                <div class="device-card">
+                  <div class="card-top">
+                    <div class="device-info-left">
+                      <div class="device-icon-box gradient-cyan">❄️</div>
+                      <div>
+                        <div class="device-name">Bedroom AC</div>
+                        <div class="device-desc">Currently OFF</div>
+                      </div>
+                    </div>
+                    <span class="status-dot offline" title="Offline"></span>
+                  </div>
+                  <div class="card-bottom">
+                    <span class="last-used">Voltas 1.5 Ton</span>
+                    <button class="card-action-btn btn-turn-on" onclick="toggleAcState(event, this)">Turn On →</button>
+                  </div>
+                </div>
+
+                <!-- Device Card 4: Laptop / PC -->
+                <div class="device-card" onclick="navigateTo('pcmouse')">
+                  <div class="card-top">
+                    <div class="device-info-left">
+                      <div class="device-icon-box gradient-blue">💻</div>
+                      <div>
+                        <div class="device-name">My Laptop / PC</div>
+                        <div class="device-desc">Windows 11 • Wireless Mouse &amp; Touchpad</div>
+                      </div>
+                    </div>
+                    <span class="status-dot online" title="Connected"></span>
+                  </div>
+                  <div class="card-bottom">
+                    <span class="last-used">Bluetooth &amp; WiFi Ready</span>
+                    <button class="card-action-btn">Use Mouse →</button>
+                  </div>
+                </div>
+
+                <div style="height: 70px;"></div>
+              </div>
+
+              <!-- Floating Add Device Button -->
+              <button class="fab-add" onclick="alert('Device Discovery scanner launched over WiFi & IR')">
+                <span>➕</span> Add New Device
+              </button>
+            </div>
+
+            <!-- 4. REMOTE CONTROL SCREEN -->
+            <div id="screen-remote" class="app-screen">
+              <!-- Header -->
+              <div class="remote-header">
+                <button class="icon-touch" onclick="navigateTo('home')">⬅️</button>
+                <div class="remote-title-box">
+                  <span class="remote-title">Samsung TV</span>
+                  <span class="remote-subtitle">Living Room • WiFi Connected</span>
+                </div>
+                <div class="remote-header-actions">
+                  <button class="icon-touch" onclick="navigateTo('voice')">🎤</button>
+                  <button class="icon-touch" onclick="navigateTo('settings')">⋮</button>
+                </div>
+              </div>
+
+              <div class="screen-scrollable remote-body">
+                <!-- Large Power Button -->
+                <div class="power-btn-container">
+                  <button class="btn-power-large" id="btn-power-tv" onclick="triggerPowerToggle(this)">
+                    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <path d="M12 2v10M18.4 6.6a9 9 0 11-12.8 0"/>
+                    </svg>
+                  </button>
+                </div>
+
+                <!-- D-Pad Navigation -->
+                <div class="dpad-wrapper">
+                  <div class="dpad-circle">
+                    <button class="dpad-btn dpad-up" onclick="dpadPress('UP')">▲</button>
+                    <button class="dpad-btn dpad-left" onclick="dpadPress('LEFT')">◄</button>
+                    <button class="dpad-btn dpad-center" onclick="dpadPress('OK')">OK</button>
+                    <button class="dpad-btn dpad-right" onclick="dpadPress('RIGHT')">►</button>
+                    <button class="dpad-btn dpad-down" onclick="dpadPress('DOWN')">▼</button>
+                  </div>
+                </div>
+
+                <!-- Media Controls: [◀️◀️] [▶️] [⏸️] [▶️▶️] -->
+                <div class="media-controls-row">
+                  <button class="media-btn" onclick="haptic('Rewind')">◀️◀️</button>
+                  <button class="media-btn" onclick="haptic('Play')">▶️</button>
+                  <button class="media-btn" onclick="haptic('Pause')">⏸️</button>
+                  <button class="media-btn" onclick="haptic('Forward')">▶️▶️</button>
+                </div>
+
+                <!-- Volume Slider: Volume ━━━━━●━━━━ 🔊 75% -->
+                <div class="volume-slider-box">
+                  <div class="volume-header">
+                    <span>Volume:</span>
+                    <span id="volume-display">🔊 75%</span>
+                  </div>
+                  <input type="range" id="vol-slider" min="0" max="100" value="75" class="custom-slider" oninput="updateVolume(this.value)">
+                </div>
+
+                <!-- Quick Actions: [🔇 Mute] [⚙️ Source] -->
+                <div class="quick-actions-pair">
+                  <button class="quick-act-btn" onclick="toggleMute(this)">
+                    <span>🔇</span> Mute
+                  </button>
+                  <button class="quick-act-btn" onclick="haptic('Source Toggled')">
+                    <span>⚙️</span> Source
+                  </button>
+                </div>
+
+                <!-- Numpad Grid -->
+                <div class="section-label">Numpad:</div>
+                <div class="numpad-grid">
+                  <button class="num-key" onclick="pressNum('1')">1</button>
+                  <button class="num-key" onclick="pressNum('2')">2</button>
+                  <button class="num-key" onclick="pressNum('3')">3</button>
+                  <button class="num-key" onclick="pressNum('4')">4</button>
+                  <button class="num-key" onclick="pressNum('5')">5</button>
+                  <button class="num-key" onclick="pressNum('6')">6</button>
+                  <button class="num-key" onclick="pressNum('7')">7</button>
+                  <button class="num-key" onclick="pressNum('8')">8</button>
+                  <button class="num-key" onclick="pressNum('9')">9</button>
+                  <button class="num-key" onclick="pressNum('*')">*</button>
+                  <button class="num-key" onclick="pressNum('0')">0</button>
+                  <button class="num-key" onclick="pressNum('#')">#</button>
+                </div>
+
+                <!-- Apps Shortcuts -->
+                <div class="section-label">Apps:</div>
+                <div class="apps-grid">
+                  <button class="app-chip netflix" onclick="haptic('Netflix Opened')">📺 Netflix</button>
+                  <button class="app-chip youtube" onclick="haptic('YouTube Opened')">▶️ YouTube</button>
+                  <button class="app-chip hotstar" onclick="haptic('Hotstar Opened')">⭐ Hotstar</button>
+                  <button class="app-chip prime" onclick="haptic('Prime Video Opened')">🎬 Prime</button>
+                </div>
+
+                <div class="divider-line"></div>
+
+                <!-- Bottom Actions: [💬 Macros] [⏰ Timer] -->
+                <div class="bottom-actions-row">
+                  <button class="btn-pill" onclick="navigateTo('macro')">💬 Macros</button>
+                  <button class="btn-pill" onclick="alert('Sleep Timer set: 30 minutes')">⏰ Timer</button>
+                </div>
+
+                <div style="height: 30px;"></div>
+              </div>
+            </div>
+
+            <!-- 5. VOICE CONTROL SCREEN -->
+            <div id="screen-voice" class="app-screen">
+              <div class="app-top-bar">
+                <div class="bar-left">
+                  <button class="icon-touch" onclick="navigateTo('home')">⬅️</button>
+                  <span class="bar-title">🎤 Voice Control</span>
+                </div>
+                <span class="bilingual-tag">हिन्दी + English</span>
+              </div>
+
+              <div class="screen-scrollable" style="padding: 16px;">
+                <!-- Animated Mic Box -->
+                <div class="mic-stage">
+                  <div class="mic-wave-circle" id="mic-wave"></div>
+                  <div class="mic-pulsing-btn" onclick="toggleVoiceListening()">
+                    <span class="mic-emoji">🎙️</span>
+                    <span class="mic-state-label" id="mic-state-text">Listening</span>
+                  </div>
+                </div>
+
+                <!-- Detected Text & Feedback -->
+                <div class="speech-output-box">
+                  <div class="detected-text" id="detected-speech">"TV chalu karo"</div>
+                  <div class="feedback-badge" id="speech-feedback">✅ TV Turned On</div>
+                </div>
+
+                <!-- Quick Voice Commands -->
+                <div class="voice-card">
+                  <div class="voice-card-title">Quick Voice Commands:</div>
+                  <div class="command-list">
+                    <div class="cmd-item" onclick="simulateVoice('Volume badao', '🔊 Volume increased')">• "Volume badao"</div>
+                    <div class="cmd-item" onclick="simulateVoice('Channel 25 lagao', '📺 Changed to Channel 25')">• "Channel 25 lagao"</div>
+                    <div class="cmd-item" onclick="simulateVoice('YouTube kholo', '▶️ Opening YouTube')">• "YouTube kholo"</div>
+                    <div class="cmd-item" onclick="simulateVoice('Mute karo', '🔇 Muted TV audio')">• "Mute karo"</div>
+                  </div>
+                </div>
+
+                <!-- My Shortcuts -->
+                <div class="voice-card">
+                  <div class="voice-card-title">My Shortcuts:</div>
+                  <div class="shortcut-item" onclick="simulateVoice('Movie time', '🎬 Movie Mode Activated')">
+                    <div class="shortcut-header">🎬 "Movie time"</div>
+                    <div class="shortcut-desc">➡️ TV on + Netflix + Vol 30</div>
+                  </div>
+                  <div class="shortcut-item" onclick="simulateVoice('Cricket mode', '🏏 Cricket Mode Activated')">
+                    <div class="shortcut-header">🏏 "Cricket mode"</div>
+                    <div class="shortcut-desc">➡️ Sports + Volume max</div>
+                  </div>
+                  <button class="btn-create-shortcut" onclick="navigateTo('macro')">
+                    + Create New Shortcut
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 6. MACRO CREATOR SCREEN -->
+            <div id="screen-macro" class="app-screen">
+              <div class="app-top-bar">
+                <div class="bar-left">
+                  <button class="icon-touch" onclick="navigateTo('home')">⬅️</button>
+                  <span class="bar-title">Create Macro</span>
+                </div>
+              </div>
+
+              <div class="screen-scrollable" style="padding: 16px;">
+                <div class="form-label">Macro Name:</div>
+                <input type="text" value="Movie Night" class="text-input" id="macro-name-input">
+
+                <div class="form-label" style="margin-top: 18px;">Actions Sequence:</div>
+
+                <!-- Action 1 -->
+                <div class="action-card">
+                  <div class="action-card-header">
+                    <span class="action-num">1.</span>
+                    <span class="action-name">📺 Turn on TV</span>
+                  </div>
+                  <div class="action-device">Device: Living Room TV</div>
+                  <div class="action-btn-row">
+                    <button class="text-btn">Edit</button>
+                    <button class="text-btn danger" onclick="removeAction(this)">Remove</button>
+                  </div>
+                </div>
+
+                <!-- Action 2 -->
+                <div class="action-card">
+                  <div class="action-card-header">
+                    <span class="action-num">2.</span>
+                    <span class="action-name">📱 Open Netflix</span>
+                  </div>
+                  <div class="action-device">Device: Living Room TV</div>
+                  <div class="action-btn-row">
+                    <button class="text-btn">Edit</button>
+                    <button class="text-btn danger" onclick="removeAction(this)">Remove</button>
+                  </div>
+                </div>
+
+                <!-- Action 3 -->
+                <div class="action-card">
+                  <div class="action-card-header">
+                    <span class="action-num">3.</span>
+                    <span class="action-name">🔊 Set Volume 30%</span>
+                  </div>
+                  <div class="action-device">Device: Living Room TV</div>
+                  <div class="action-btn-row">
+                    <button class="text-btn">Edit</button>
+                    <button class="text-btn danger" onclick="removeAction(this)">Remove</button>
+                  </div>
+                </div>
+
+                <!-- Add Action Button -->
+                <button class="btn-add-action" onclick="addNewAction()">➕ Add Action</button>
+
+                <!-- Voice Trigger Input -->
+                <div class="form-label" style="margin-top: 18px;">Voice Trigger (Optional):</div>
+                <div class="input-with-icon">
+                  <span class="icon-inline">🎤</span>
+                  <input type="text" value="movie chalao" class="text-input">
+                </div>
+
+                <!-- Icon Picker -->
+                <div class="form-label" style="margin-top: 18px;">Icon:</div>
+                <div class="icon-picker-row">
+                  <button class="emoji-chip selected" onclick="selectEmoji(this)">🎬</button>
+                  <button class="emoji-chip" onclick="selectEmoji(this)">📺</button>
+                  <button class="emoji-chip" onclick="selectEmoji(this)">🍿</button>
+                  <button class="emoji-chip" onclick="selectEmoji(this)">🎭</button>
+                  <button class="emoji-chip" onclick="selectEmoji(this)">🏏</button>
+                </div>
+
+                <!-- Cancel / Save Buttons -->
+                <div class="macro-submit-row">
+                  <button class="btn-cancel" onclick="navigateTo('home')">Cancel</button>
+                  <button class="btn-save" onclick="saveMacroNotice()">Save Macro</button>
+                </div>
+
+                <div style="height: 30px;"></div>
+              </div>
+            </div>
+
+            <!-- 7. AIRTEL XSTREAM REMOTE -->
+            <div id="screen-airtel" class="app-screen">
+              <!-- Header -->
+              <div class="remote-header airtel-theme">
+                <button class="icon-touch" onclick="navigateTo('home')">⬅️</button>
+                <div class="remote-title-box">
+                  <span class="remote-title" style="color:#EF4444;">airtel <span style="color:#FFF;">Xstream</span></span>
+                  <span class="remote-subtitle">DTH Smart Box • Signal: 98%</span>
+                </div>
+                <div class="remote-header-actions">
+                  <button class="icon-touch" onclick="navigateTo('voice')">🎤</button>
+                  <button class="icon-touch" onclick="navigateTo('settings')">⋮</button>
+                </div>
+              </div>
+
+              <div class="screen-scrollable remote-body">
+                <!-- Current Channel Box -->
+                <div class="airtel-channel-card">
+                  <div class="cur-channel-title">📺 Star Plus (100)</div>
+                  <div class="cur-program-title">Yeh Rishta Kya Kehlata Hai</div>
+                  <div class="cur-program-time">8:00 PM - 9:00 PM</div>
+                  <div class="channel-nav-row">
+                    <button class="btn-ch-nav" onclick="haptic('Previous Channel')">⬅️ Prev</button>
+                    <button class="btn-ch-nav guide" onclick="haptic('EPG Guide Opened')">Guide</button>
+                    <button class="btn-ch-nav" onclick="haptic('Next Channel')">Next ➡️</button>
+                  </div>
+                </div>
+
+                <!-- Favorites ⭐ -->
+                <div class="section-label">Favorites ⭐</div>
+                <div class="favorites-chips-row">
+                  <div class="fav-chip" onclick="tuneAirtelChannel('100', 'Star Plus', 'Yeh Rishta Kya Kehlata Hai', '8:00 PM - 9:00 PM')">
+                    <div class="fav-num">100</div>
+                    <div class="fav-name">Star</div>
+                  </div>
+                  <div class="fav-chip" onclick="tuneAirtelChannel('101', 'Sony TV', 'Kaun Banega Crorepati', '9:00 PM - 10:30 PM')">
+                    <div class="fav-num">101</div>
+                    <div class="fav-name">Sony</div>
+                  </div>
+                  <div class="fav-chip" onclick="tuneAirtelChannel('300', 'Ten 1 HD', 'India Tour of England Cricket', '7:00 PM - 11:30 PM')">
+                    <div class="fav-num">300</div>
+                    <div class="fav-name">Ten1</div>
+                  </div>
+                  <div class="fav-chip" onclick="tuneAirtelChannel('420', 'Colors HD', 'Bigg Boss 18 Hindi', '9:30 PM - 11:00 PM')">
+                    <div class="fav-num">420</div>
+                    <div class="fav-name">Colors</div>
+                  </div>
+                </div>
+
+                <!-- Quick Apps -->
+                <div class="section-label">Quick Apps:</div>
+                <div class="apps-grid airtel-apps">
+                  <button class="app-chip netflix" onclick="haptic('Netflix')">Netflix</button>
+                  <button class="app-chip prime" onclick="haptic('Prime')">Prime</button>
+                  <button class="app-chip hotstar" onclick="haptic('Hotstar')">Hotstar</button>
+                </div>
+
+                <!-- Large Power Button 🔴 -->
+                <div class="power-btn-container">
+                  <button class="btn-power-large airtel-power" onclick="triggerPowerToggle(this)">
+                    POWER 🔴
+                  </button>
+                </div>
+
+                <!-- DPad Navigation -->
+                <div class="dpad-wrapper">
+                  <div class="dpad-circle">
+                    <button class="dpad-btn dpad-up" onclick="dpadPress('UP')">▲</button>
+                    <button class="dpad-btn dpad-left" onclick="dpadPress('LEFT')">◄</button>
+                    <button class="dpad-btn dpad-center" onclick="dpadPress('OK')">OK</button>
+                    <button class="dpad-btn dpad-right" onclick="dpadPress('RIGHT')">►</button>
+                    <button class="dpad-btn dpad-down" onclick="dpadPress('DOWN')">▼</button>
+                  </div>
+                </div>
+
+                <!-- Indian DTH 4-Color Keys -->
+                <div class="color-keys-row">
+                  <button class="color-key red" onclick="pressColorKey('red')">RED</button>
+                  <button class="color-key green" onclick="pressColorKey('green')">GREEN</button>
+                  <button class="color-key yellow" onclick="pressColorKey('yellow')">YELLOW</button>
+                  <button class="color-key blue" onclick="pressColorKey('blue')">BLUE</button>
+                </div>
+
+                <!-- Media Controls -->
+                <div class="media-controls-row">
+                  <button class="media-btn" onclick="haptic('Rewind')">◀️◀️</button>
+                  <button class="media-btn" onclick="haptic('Play')">▶️</button>
+                  <button class="media-btn" onclick="haptic('Pause')">⏸️</button>
+                  <button class="media-btn" onclick="haptic('Forward')">▶️▶️</button>
+                </div>
+
+                <!-- Channel & Volume Rockers -->
+                <div class="quick-actions-pair">
+                  <button class="quick-act-btn" onclick="haptic('Channel Up')">
+                    <span>📺</span> CH +
+                  </button>
+                  <button class="quick-act-btn" onclick="haptic('Channel Down')">
+                    <span>📺</span> CH -
+                  </button>
+                </div>
+
+                <!-- Recharge Info Card -->
+                <div class="recharge-info-card">
+                  <div class="recharge-header">Recharge Info:</div>
+                  <div class="recharge-row">
+                    <div>
+                      <div class="recharge-bal">Balance: ₹250.00</div>
+                      <div class="recharge-date">Valid till: 15 Jan 2025</div>
+                    </div>
+                    <button class="btn-recharge-now" onclick="alert('Redirecting to Airtel Thanks App / Payment gateway...')">Recharge Now</button>
+                  </div>
+                </div>
+
+                <div style="height: 30px;"></div>
+              </div>
+            </div>
+
+            <!-- 8. SETTINGS SCREEN -->
+            <div id="screen-settings" class="app-screen">
+              <div class="app-top-bar">
+                <div class="bar-left">
+                  <button class="icon-touch" onclick="navigateTo('home')">⬅️</button>
+                  <span class="bar-title">Settings</span>
+                </div>
+              </div>
+
+              <div class="screen-scrollable" style="padding: 16px;">
+                <div class="settings-tree">
+                  <!-- Devices -->
+                  <div class="tree-group">
+                    <div class="tree-group-title">Devices</div>
+                    <div class="tree-group-box">
+                      <div class="tree-item" onclick="navigateTo('home')">├─ My Devices <span class="tree-arrow">›</span></div>
+                      <div class="tree-item" onclick="alert('Scan launched')">├─ Add New Device <span class="tree-arrow">›</span></div>
+                      <div class="tree-item">└─ Device Discovery <span class="badge-active">Active</span></div>
+                    </div>
+                  </div>
+
+                  <!-- Voice Control -->
+                  <div class="tree-group">
+                    <div class="tree-group-title">Voice Control</div>
+                    <div class="tree-group-box">
+                      <div class="tree-item">├─ Language (Hindi/English) <span class="tree-sub">Bilingual</span></div>
+                      <div class="tree-item" onclick="navigateTo('voice')">├─ Voice Shortcuts <span class="tree-arrow">›</span></div>
+                      <div class="tree-item">└─ Sensitivity <span class="tree-sub">High</span></div>
+                    </div>
+                  </div>
+
+                  <!-- Appearance -->
+                  <div class="tree-group">
+                    <div class="tree-group-title">Appearance</div>
+                    <div class="tree-group-box">
+                      <div class="tree-item" onclick="toggleAppTheme()">├─ Theme (Dark/Light/Auto) <span class="tree-sub" id="settings-theme-label">Dark</span></div>
+                      <div class="tree-item">├─ Remote Layout <span class="tree-sub">Standard</span></div>
+                      <div class="tree-item">└─ Button Size <span class="tree-sub">Medium</span></div>
+                    </div>
+                  </div>
+
+                  <!-- Automation -->
+                  <div class="tree-group">
+                    <div class="tree-group-title">Automation</div>
+                    <div class="tree-group-box">
+                      <div class="tree-item" onclick="navigateTo('macro')">├─ Macros <span class="tree-arrow">›</span></div>
+                      <div class="tree-item">├─ Schedules <span class="tree-sub">2 active</span></div>
+                      <div class="tree-item">└─ Routines <span class="tree-arrow">›</span></div>
+                    </div>
+                  </div>
+
+                  <!-- Family & Sharing -->
+                  <div class="tree-group">
+                    <div class="tree-group-title">Family &amp; Sharing</div>
+                    <div class="tree-group-box">
+                      <div class="tree-item">├─ Family Profiles <span class="tree-sub">Admin / Elder</span></div>
+                      <div class="tree-item">├─ Parental Controls <span class="tree-sub">PIN Protected</span></div>
+                      <div class="tree-item">└─ Guest Access <span class="tree-sub">Enabled</span></div>
+                    </div>
+                  </div>
+
+                  <!-- Premium -->
+                  <div class="tree-group">
+                    <div class="tree-group-title premium-label">Premium</div>
+                    <div class="tree-group-box">
+                      <div class="tree-item" style="color:#F97316; font-weight:600;">├─ Upgrade to Pro <span class="badge-pro">₹49/mo</span></div>
+                      <div class="tree-item">├─ Manage Subscription <span class="tree-arrow">›</span></div>
+                      <div class="tree-item">└─ Restore Purchase <span class="tree-arrow">›</span></div>
+                    </div>
+                  </div>
+
+                  <!-- About -->
+                  <div class="tree-group">
+                    <div class="tree-group-title">About</div>
+                    <div class="tree-group-box">
+                      <div class="tree-item">├─ Help &amp; Support <span class="tree-arrow">›</span></div>
+                      <div class="tree-item">├─ Privacy Policy <span class="tree-arrow">›</span></div>
+                      <div class="tree-item">└─ Version 1.0.0 <span class="tree-sub">Up to date</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div style="height: 30px;"></div>
+              </div>
+            </div>
+
+            <!-- 9. WIDGET DESIGNS (Small 2x2, Medium 4x2, Large 4x4) -->
+            <div id="screen-widgets" class="app-screen">
+              <div class="app-top-bar">
+                <div class="bar-left">
+                  <button class="icon-touch" onclick="navigateTo('home')">⬅️</button>
+                  <span class="bar-title">Android Widgets</span>
+                </div>
+              </div>
+
+              <div class="screen-scrollable" style="padding: 16px;">
+                <!-- Small Widget (2x2) -->
+                <div class="widget-section-title">Small Widget (2x2)</div>
+                <div class="widget-preview-small">
+                  <div class="widget-small-header">
+                    <span>📺 TV</span>
+                    <button class="btn-mini-power" onclick="haptic('Widget Power')">⚫</button>
+                  </div>
+                  <div class="widget-vol-pair">
+                    <button class="btn-mini" onclick="haptic('Widget Vol-')">Vol -</button>
+                    <button class="btn-mini" onclick="haptic('Widget Vol+')">Vol +</button>
+                  </div>
+                </div>
+
+                <!-- Medium Widget (4x2) -->
+                <div class="widget-section-title" style="margin-top: 24px;">Medium Widget (4x2)</div>
+                <div class="widget-preview-medium">
+                  <div class="widget-med-top">
+                    <span>📺 Living Room TV</span>
+                    <span class="status-dot online"></span>
+                  </div>
+                  <div class="widget-med-controls">
+                    <button class="widget-btn-ctrl red" onclick="haptic('Power')">⚫</button>
+                    <button class="widget-btn-ctrl" onclick="haptic('Mute')">🔇</button>
+                    <button class="widget-btn-ctrl" onclick="haptic('Up')">▲</button>
+                    <button class="widget-btn-ctrl" onclick="haptic('Down')">▼</button>
+                    <button class="widget-btn-ctrl" onclick="haptic('Ch+')">CH ±</button>
+                  </div>
+                </div>
+
+                <!-- Large Widget (4x4) -->
+                <div class="widget-section-title" style="margin-top: 24px;">Large Widget (4x4)</div>
+                <div class="widget-preview-large">
+                  <div class="widget-med-top">
+                    <span>📺 Samsung TV</span>
+                    <span class="status-dot online"></span>
+                  </div>
+
+                  <div style="text-align: center; margin: 12px 0;">
+                    <button class="btn-widget-power-lg" onclick="haptic('Large Power')">⚫ POWER</button>
+                  </div>
+
+                  <div class="widget-dpad-box">
+                    <button class="w-dpad-btn" onclick="haptic('Up')">▲</button>
+                    <div class="w-dpad-mid">
+                      <button class="w-dpad-btn" onclick="haptic('Left')">◄</button>
+                      <button class="w-dpad-btn center" onclick="haptic('OK')">⬤</button>
+                      <button class="w-dpad-btn" onclick="haptic('Right')">►</button>
+                    </div>
+                    <button class="w-dpad-btn" onclick="haptic('Down')">▼</button>
+                  </div>
+
+                  <div class="widget-large-bottom">
+                    <button class="w-icon-btn" onclick="haptic('Mute')">🔇</button>
+                    <div class="w-slider-fake">Vol ━●━</div>
+                    <button class="w-icon-btn" onclick="haptic('Channel')">CH ±</button>
+                  </div>
+                </div>
+
+                <div style="height: 30px;"></div>
+              </div>
+            </div>
+
+            <!-- 10. FLOATING WIDGET (Overlay) -->
+            <div id="screen-floating" class="app-screen">
+              <div class="app-top-bar">
+                <div class="bar-left">
+                  <button class="icon-touch" onclick="navigateTo('home')">⬅️</button>
+                  <span class="bar-title">Floating Widget Overlay</span>
+                </div>
+              </div>
+
+              <div class="floating-sim-canvas" id="floating-canvas">
+                <p class="overlay-hint">
+                  The floating bubble stays draggable on top of Netflix, Prime, or any active app.<br>
+                  <strong>Tap the floating bubble below to expand quick controls:</strong>
+                </p>
+
+                <!-- Floating Draggable Bubble Simulator -->
+                <div class="floating-bubble-pill" id="floating-bubble" onclick="toggleFloatingExpanded()">
+                  <span>📺</span>
+                </div>
+
+                <!-- Expanded Quick Control Card -->
+                <div class="floating-expanded-card" id="floating-expanded-card">
+                  <div class="floating-card-header">
+                    <span>Quick Control</span>
+                    <button class="close-x" onclick="toggleFloatingExpanded(event)">✕</button>
+                  </div>
+                  <div class="floating-btn-row">
+                    <button class="f-btn red" onclick="haptic('Floating Power')">⚫ Power</button>
+                    <button class="f-btn" onclick="haptic('Floating Mute')">🔇 Mute</button>
+                  </div>
+                  <div class="floating-btn-row">
+                    <button class="f-btn" onclick="haptic('Floating Vol+')">▲ Vol +</button>
+                    <button class="f-btn" onclick="haptic('Floating Vol-')">▼ Vol -</button>
+                  </div>
+                  <button class="f-btn-more" onclick="navigateTo('remote')">More...</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 11. PC / LAPTOP WIRELESS MOUSE & TOUCHPAD -->
+            <div id="screen-pcmouse" class="app-screen">
+              <!-- Top Bar -->
+              <div class="remote-header">
+                <button class="icon-touch" onclick="navigateTo('home')">⬅️</button>
+                <div class="remote-title-box">
+                  <span class="remote-title">💻 Laptop / PC Mouse</span>
+                  <span class="remote-subtitle">WiFi: 192.168.1.10 (3ms) • BT HID Ready</span>
+                </div>
+                <div class="remote-header-actions">
+                  <button class="icon-touch" onclick="togglePcConnection()" id="btn-pc-conn" title="Toggle WiFi / BT Connection">📶</button>
+                  <button class="icon-touch" onclick="alert('Sensitivity: High (1.5x) | Natural Scrolling: ON | Acceleration: ON')">⚙️</button>
+                </div>
+              </div>
+
+              <!-- Mode Selector Tabs: [👆 Finger Move] [📱 Mobile Move] [📊 PPT Clicker] -->
+              <div class="pcmouse-mode-bar">
+                <button class="pcmouse-tab active" id="tab-mode-touchpad" onclick="switchPcMode('touchpad')">
+                  <span class="pcmouse-tab-main">👆 Finger Move</span>
+                  <span class="pcmouse-tab-sub">उँगली से चलाएं</span>
+                </button>
+                <button class="pcmouse-tab" id="tab-mode-air" onclick="switchPcMode('air')">
+                  <span class="pcmouse-tab-main">📱 Mobile Move</span>
+                  <span class="pcmouse-tab-sub">हवा में हिलाएं</span>
+                </button>
+                <button class="pcmouse-tab" id="tab-mode-ppt" onclick="switchPcMode('ppt')">
+                  <span class="pcmouse-tab-main">📊 PPT Clicker</span>
+                  <span class="pcmouse-tab-sub">स्लाइड्स</span>
+                </button>
+              </div>
+
+              <div class="screen-scrollable pcmouse-scroll-body">
+
+                <!-- VIEW 1: TOUCHPAD MODE -->
+                <div id="view-touchpad-content" class="pcmouse-view-content active">
+                  <!-- Mini Screen Preview with live cursor dot -->
+                  <div class="cursor-monitor-preview">
+                    <div class="monitor-top-bar">
+                      <span class="monitor-dot red"></span>
+                      <span class="monitor-dot yellow"></span>
+                      <span class="monitor-dot green"></span>
+                      <span class="monitor-label">Laptop Display (1920x1080)</span>
+                      <span class="monitor-coords" id="cursor-coords">X: 960, Y: 540</span>
+                    </div>
+                    <div class="monitor-screen" id="monitor-screen">
+                      <div class="virtual-cursor-dot" id="virtual-cursor"></div>
+                      <div class="monitor-hint">Touch below to move cursor</div>
+                    </div>
+                  </div>
+
+                  <!-- Touchpad Surface with Integrated Scroll Strip -->
+                  <div class="touchpad-container">
+                    <div class="touchpad-surface" id="touchpad-surface">
+                      <div class="touchpad-crosshairs"></div>
+                      <div class="touchpad-hint">
+                        <span>☝️ 1-Finger: Move / Tap: Left Click</span><br>
+                        <span>✌️ 2-Finger Tap: Right Click</span>
+                      </div>
+                      <div class="touch-ripple" id="touch-ripple"></div>
+                    </div>
+                    <!-- Vertical Scroll Strip -->
+                    <div class="touchpad-scroll-strip" id="touchpad-scroll-strip" title="Drag to Scroll Up/Down">
+                      <span class="scroll-arrow">▲</span>
+                      <span class="scroll-label">SCROLL</span>
+                      <span class="scroll-arrow">▼</span>
+                    </div>
+                  </div>
+
+                  <!-- Mouse Clicks Row -->
+                  <div class="mouse-clicks-row">
+                    <button class="btn-mouse-click left" id="btn-left-click" onclick="simulatePcClick('left')">
+                      <span>🖱️ Left Click</span>
+                    </button>
+                    <button class="btn-mouse-click middle" id="btn-mid-click" onclick="simulatePcClick('middle')">
+                      <span>⚙️ Mid</span>
+                    </button>
+                    <button class="btn-mouse-click right" id="btn-right-click" onclick="simulatePcClick('right')">
+                      <span>🖱️ Right Click</span>
+                    </button>
+                  </div>
+
+                  <!-- Quick Windows/Mac Shortcuts Bar -->
+                  <div class="pc-shortcuts-bar">
+                    <button class="pc-key-btn" onclick="simulatePcKey('win')">⊞ Win</button>
+                    <button class="pc-key-btn" onclick="simulatePcKey('alt_tab')">Alt+Tab</button>
+                    <button class="pc-key-btn" onclick="simulatePcKey('ctrl_c')">Ctrl+C</button>
+                    <button class="pc-key-btn" onclick="simulatePcKey('ctrl_v')">Ctrl+V</button>
+                    <button class="pc-key-btn" onclick="simulatePcKey('esc')">Esc</button>
+                    <button class="pc-key-btn" onclick="simulatePcKey('enter')">↵ Enter</button>
+                  </div>
+
+                  <!-- Direct Keyboard Input Bar -->
+                  <div class="pc-keyboard-bar">
+                    <span class="kb-icon">⌨️</span>
+                    <input type="text" id="pc-kb-input" class="pc-text-input" placeholder="Type here to send keys to laptop..." onkeydown="handlePcKeyInput(event)">
+                    <button class="btn-send-keys" onclick="sendTypedKeys()">Send</button>
+                  </div>
+                </div>
+
+                <!-- VIEW 2: AIR MOUSE MODE -->
+                <div id="view-air-content" class="pcmouse-view-content">
+                  <div class="air-mouse-stage">
+                    <div class="gyro-ring-outer"></div>
+                    <div class="gyro-ring-inner"></div>
+                    <div class="gyro-center-dot">🎯</div>
+                    <p class="gyro-status-text">Wave phone in the air to move laptop cursor using Gyroscope</p>
+                    <button class="btn-recalibrate" onclick="haptic('Air Mouse Gyroscope Calibrated')">🧭 Center / Calibrate</button>
+                  </div>
+                  <div class="mouse-clicks-row" style="margin-top: 20px;">
+                    <button class="btn-mouse-click left" onclick="simulatePcClick('left')">
+                      <span>🖱️ Left Click</span>
+                    </button>
+                    <button class="btn-mouse-click right" onclick="simulatePcClick('right')">
+                      <span>🖱️ Right Click</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- VIEW 3: PRESENTATION (PPT) CLICKER MODE -->
+                <div id="view-ppt-content" class="pcmouse-view-content">
+                  <div class="ppt-header-info">
+                    <div class="ppt-title">PowerPoint &amp; Google Slides</div>
+                    <div class="ppt-timer" id="ppt-timer-display">⏱️ Slide Time: 02:45</div>
+                  </div>
+
+                  <div class="ppt-large-controls">
+                    <button class="btn-ppt-large prev" onclick="simulatePptNav('prev')">
+                      <span class="ppt-arrow">◀</span>
+                      <span class="ppt-label">PREV SLIDE</span>
+                    </button>
+                    <button class="btn-ppt-large next" onclick="simulatePptNav('next')">
+                      <span class="ppt-arrow">▶</span>
+                      <span class="ppt-label">NEXT SLIDE</span>
+                    </button>
+                  </div>
+
+                  <div class="ppt-actions-grid">
+                    <button class="ppt-action-btn" onclick="simulatePptNav('f5')">
+                      <span>▶️</span> Start F5
+                    </button>
+                    <button class="ppt-action-btn" onclick="simulatePptNav('black')">
+                      <span>⬛</span> Black (B)
+                    </button>
+                    <button class="ppt-action-btn" onclick="simulatePptNav('laser')">
+                      <span>🔴</span> Laser Pointer
+                    </button>
+                    <button class="ppt-action-btn" onclick="simulatePptNav('esc')">
+                      <span>⏹️</span> Exit (Esc)
+                    </button>
+                  </div>
+                </div>
+
+                <div style="height: 30px;"></div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Phone Gesture Navigation Pill -->
+          <div class="phone-nav-bar">
+            <div class="gesture-pill" onclick="navigateTo('home')"></div>
+          </div>
+        </div>
+
+        <!-- Interactive Toast Feedback Banner -->
+        <div id="toast-banner" class="toast-banner">Command dispatched</div>
+      </div>
+    </div>
+
+    <!-- DESIGN TOKENS & SYSTEM DOCUMENTATION VIEW -->
+    <div id="tokens-view" class="view-container">
+      <div class="tokens-layout">
+
+        <!-- Sidebar nav for design specs -->
+        <aside class="tokens-sidebar">
+          <a href="#spec-export-banner" class="token-nav-link active">⚡ Export &amp; Handoff</a>
+          <a href="#spec-colors" class="token-nav-link">1. Color Palette Swatches</a>
+          <a href="#spec-typography" class="token-nav-link">2. Typography Scale (Inter)</a>
+          <a href="#spec-grid" class="token-nav-link">3. 4dp Grid &amp; Elevations</a>
+          <a href="#spec-animations" class="token-nav-link">4. Animation Specifications</a>
+          <a href="#spec-icons" class="token-nav-link">5. Icon Set (SVG &amp; PNG)</a>
+          <a href="#spec-components" class="token-nav-link">6. Component Library</a>
+          <a href="#spec-accessibility" class="token-nav-link">7. Accessibility &amp; Standards</a>
+          <a href="#spec-compose" class="token-nav-link">8. Jetpack Compose (MD3)</a>
+        </aside>
+
+        <section class="tokens-content">
+
+          <!-- Hero Export Banner -->
+          <div id="spec-export-banner" class="export-hero-banner">
+            <div class="export-hero-info">
+              <h3>SmartRemote Pro • Design System &amp; Developer Handoff</h3>
+              <p>Platform: Android Material 3 • Target: Indian Users (Hindi + English) • 4dp Grid • WCAG AAA</p>
+            </div>
+            <div class="export-btn-group">
+              <button class="btn-export-action" onclick="exportFigmaTokens()">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M8 2h4a4 4 0 010 8H8V2zm0 8h4a4 4 0 010 8H8v-8zm-4 4a4 4 0 014-4v8a4 4 0 01-4-4zm0-8a4 4 0 014-4v8a4 4 0 01-4-4z"/></svg>
+                Export Figma Tokens (JSON)
+              </button>
+              <button class="btn-export-action secondary" onclick="navigateTo('home'); document.getElementById('tab-prototype').click();">
+                📱 Switch to Live Prototype
+              </button>
+            </div>
+          </div>
+
+          <!-- 1. Color Scheme Spec -->
+          <div id="spec-colors" class="spec-section">
+            <h2 class="spec-title">1. Color Scheme Swatches &amp; Tokens</h2>
+            <p class="spec-desc">Curated Material 3 palette for SmartRemote Pro with high contrast ratios, tactile remote states, and WCAG AAA compliance.</p>
+
+            <h3 class="spec-subtitle">Primary Colors</h3>
+            <div class="swatches-grid">
+              <div class="swatch-card" onclick="copyToken('#1E3A8A')">
+                <div class="swatch-preview" style="background:#1E3A8A;"></div>
+                <div class="swatch-name">Deep Blue</div>
+                <div class="swatch-hex">#1E3A8A</div>
+                <div class="swatch-role">Trust, technology branding</div>
+              </div>
+              <div class="swatch-card" onclick="copyToken('#3B82F6')">
+                <div class="swatch-preview" style="background:#3B82F6;"></div>
+                <div class="swatch-name">Electric Blue</div>
+                <div class="swatch-hex">#3B82F6</div>
+                <div class="swatch-role">Interactive buttons, sliders, active D-pad</div>
+              </div>
+              <div class="swatch-card" onclick="copyToken('#F97316')">
+                <div class="swatch-preview" style="background:#F97316;"></div>
+                <div class="swatch-name">Accent Orange</div>
+                <div class="swatch-hex">#F97316</div>
+                <div class="swatch-role">Important CTAs, Pro subscription badges</div>
+              </div>
+            </div>
+
+            <h3 class="spec-subtitle" style="margin-top:24px;">Neutral Colors</h3>
+            <div class="swatches-grid">
+              <div class="swatch-card" onclick="copyToken('#0F172A')">
+                <div class="swatch-preview" style="background:#0F172A; border:1px solid #334155;"></div>
+                <div class="swatch-name">Background Dark</div>
+                <div class="swatch-hex">#0F172A</div>
+                <div class="swatch-role">Main dark OLED background</div>
+              </div>
+              <div class="swatch-card" onclick="copyToken('#F8FAFC')">
+                <div class="swatch-preview" style="background:#F8FAFC; border:1px solid #CBD5E1; color:#0F172A;"></div>
+                <div class="swatch-name">Background Light</div>
+                <div class="swatch-hex">#F8FAFC</div>
+                <div class="swatch-role">Light theme background</div>
+              </div>
+              <div class="swatch-card" onclick="copyToken('#1E293B')">
+                <div class="swatch-preview" style="background:#1E293B; border:1px solid #334155;"></div>
+                <div class="swatch-name">Surface Dark</div>
+                <div class="swatch-hex">#1E293B</div>
+                <div class="swatch-role">Cards, remote body, container surface</div>
+              </div>
+              <div class="swatch-card" onclick="copyToken('#FFFFFF')">
+                <div class="swatch-preview" style="background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A;"></div>
+                <div class="swatch-name">Surface Light</div>
+                <div class="swatch-hex">#FFFFFF</div>
+                <div class="swatch-role">Light theme surface containers</div>
+              </div>
+              <div class="swatch-card" onclick="copyToken('#F1F5F9')">
+                <div class="swatch-preview" style="background:#F1F5F9; color:#0F172A;"></div>
+                <div class="swatch-name">Text Primary (Dark)</div>
+                <div class="swatch-hex">#F1F5F9</div>
+                <div class="swatch-role">High emphasis text (15.3:1 contrast)</div>
+              </div>
+              <div class="swatch-card" onclick="copyToken('#0F172A')">
+                <div class="swatch-preview" style="background:#0F172A; color:#FFFFFF;"></div>
+                <div class="swatch-name">Text Primary (Light)</div>
+                <div class="swatch-hex">#0F172A</div>
+                <div class="swatch-role">High emphasis light mode text</div>
+              </div>
+              <div class="swatch-card" onclick="copyToken('#94A3B8')">
+                <div class="swatch-preview" style="background:#94A3B8;"></div>
+                <div class="swatch-name">Text Secondary</div>
+                <div class="swatch-hex">#94A3B8</div>
+                <div class="swatch-role">Captions, metadata, placeholders</div>
+              </div>
+            </div>
+
+            <h3 class="spec-subtitle" style="margin-top:24px;">Semantic Colors</h3>
+            <div class="swatches-grid">
+              <div class="swatch-card" onclick="copyToken('#10B981')">
+                <div class="swatch-preview" style="background:#10B981;"></div>
+                <div class="swatch-name">Success Green</div>
+                <div class="swatch-hex">#10B981</div>
+                <div class="swatch-role">Online status dot, voice confirmations</div>
+              </div>
+              <div class="swatch-card" onclick="copyToken('#EF4444')">
+                <div class="swatch-preview" style="background:#EF4444;"></div>
+                <div class="swatch-name">Error Red</div>
+                <div class="swatch-hex">#EF4444</div>
+                <div class="swatch-role">Hardware Power buttons, offline status</div>
+              </div>
+              <div class="swatch-card" onclick="copyToken('#F59E0B')">
+                <div class="swatch-preview" style="background:#F59E0B;"></div>
+                <div class="swatch-name">Warning Yellow</div>
+                <div class="swatch-hex">#F59E0B</div>
+                <div class="swatch-role">Voice speech highlight, warning badges</div>
+              </div>
+              <div class="swatch-card" onclick="copyToken('#06B6D4')">
+                <div class="swatch-preview" style="background:#06B6D4;"></div>
+                <div class="swatch-name">Info Blue</div>
+                <div class="swatch-hex">#06B6D4</div>
+                <div class="swatch-role">AC cooling status, device info chips</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Typography Spec -->
+          <div id="spec-typography" class="spec-section">
+            <h2 class="spec-title">2. Typography Scale (Inter Google Font)</h2>
+            <p class="spec-desc">Primary Font: <strong>Inter</strong> with 600 Headings, 500 Buttons, and 400 Body weights. Optimized for English &amp; Devanagari Hindi.</p>
+
+            <div class="type-spec-table">
+              <div class="type-spec-row">
+                <span class="type-tag">H1 • 28sp • 600 Weight • 36sp Line-Height</span>
+                <span style="font-size:28px; font-weight:600;">Control Everything, Everywhere</span>
+                <span style="font-size:24px; font-weight:600; color:var(--text-secondary);">सब कुछ, कहीं से भी नियंत्रित करें</span>
+              </div>
+              <div class="type-spec-row">
+                <span class="type-tag">H2 • 24sp • 600 Weight • 32sp Line-Height</span>
+                <span style="font-size:24px; font-weight:600;">Voice Control in Hindi &amp; English</span>
+                <span style="font-size:22px; font-weight:600; color:var(--text-secondary);">हिन्दी और अंग्रेजी में वॉयस कंट्रोल</span>
+              </div>
+              <div class="type-spec-row">
+                <span class="type-tag">H3 • 20sp • 600 Weight • 28sp Line-Height</span>
+                <span style="font-size:20px; font-weight:600;">Living Room Samsung Smart TV</span>
+              </div>
+              <div class="type-spec-row">
+                <span class="type-tag">Body • 16sp • 400 Weight • 24sp Line-Height</span>
+                <span style="font-size:16px; font-weight:400; color:#CBD5E1;">Control all smart TVs, ACs, and set-top boxes with zero cloud latency. Just say "TV chalu karo".</span>
+              </div>
+              <div class="type-spec-row">
+                <span class="type-tag">Caption • 14sp • 400 Weight • 20sp Line-Height</span>
+                <span style="font-size:14px; font-weight:400; color:#94A3B8;">Last used 5 min ago • Star Plus (100) • Yeh Rishta Kya Kehlata Hai</span>
+              </div>
+              <div class="type-spec-row">
+                <span class="type-tag">Small • 12sp • 400 Weight • 16sp Line-Height</span>
+                <span style="font-size:12px; font-weight:400; color:#94A3B8;">Version 1.0.0 • 4dp Grid System • WCAG AAA Compliance</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Spacing & Elevation -->
+          <div id="spec-grid" class="spec-section">
+            <h2 class="spec-title">3. 4dp Grid System &amp; Material 3 Elevation</h2>
+            <p class="spec-desc">All layouts, touch targets, and paddings align strictly to an 8-point / 4-point spacing grid.</p>
+
+            <div class="grid-spec-cards">
+              <div class="grid-card">
+                <strong>Spacing Scale (4dp Grid)</strong>
+                <p>
+                  • <strong>4dp:</strong> Chip padding, inner icon gap<br>
+                  • <strong>8dp:</strong> Button vertical padding, small gaps<br>
+                  • <strong>12dp:</strong> Form control padding, action button margins<br>
+                  • <strong>16dp:</strong> Screen margins, card paddings (Android standard)<br>
+                  • <strong>24dp:</strong> Section separations, D-pad outer margins<br>
+                  • <strong>32dp:</strong> Major screen transitions, Hero spacing
+                </p>
+              </div>
+              <div class="grid-card">
+                <strong>Elevation Scale (MD3 Shadows)</strong>
+                <p>
+                  • <strong>Level 0:</strong> Flat containers (0dp)<br>
+                  • <strong>Level 1:</strong> Device Cards (2dp): <code>0 2px 8px rgba(0,0,0,0.3)</code><br>
+                  • <strong>Level 2:</strong> D-Pad &amp; FAB (6dp): <code>0 6px 16px rgba(0,0,0,0.4)</code><br>
+                  • <strong>Level 3:</strong> Modals &amp; Floating Overlays (12dp): <code>0 12px 32px rgba(0,0,0,0.6)</code>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Animation Specifications & Interactive Playground -->
+          <div id="spec-animations" class="spec-section">
+            <h2 class="spec-title">4. Animation Specifications &amp; Interactive Playground</h2>
+            <p class="spec-desc">Click any of the test buttons below to trigger and observe the live motion physics:</p>
+
+            <div class="anim-playground">
+              <!-- Spec 1: Screen Transitions -->
+              <div class="anim-card">
+                <div>
+                  <h4>1. Screen Transitions</h4>
+                  <p>300ms slide + fade with cubic-bezier(0.16, 1, 0.3, 1)</p>
+                  <div class="anim-demo-box">
+                    <span style="font-size:12px; color:var(--text-secondary);">300ms Slide + Fade</span>
+                  </div>
+                </div>
+                <button class="btn-trigger-anim" onclick="testAnimation('screen')">▶️ Test Screen Slide</button>
+              </div>
+
+              <!-- Spec 2: Button Press -->
+              <div class="anim-card">
+                <div>
+                  <h4>2. Button Press Scale</h4>
+                  <p>Scale 0.95 with 100ms spring response on touch</p>
+                  <div class="anim-demo-box">
+                    <button id="demo-anim-btn" class="btn-primary" style="padding: 8px 16px; font-size:13px;">Tap Me</button>
+                  </div>
+                </div>
+                <button class="btn-trigger-anim" onclick="testAnimation('button')">▶️ Test Button Press</button>
+              </div>
+
+              <!-- Spec 3: Voice Wave -->
+              <div class="anim-card">
+                <div>
+                  <h4>3. Voice Wave Pulse</h4>
+                  <p>Pulsing radial soundwave animation for Hindi/English speech</p>
+                  <div class="anim-demo-box" style="position:relative;">
+                    <div id="demo-voice-wave" style="width:36px; height:36px; border-radius:50%; background:var(--color-electric-blue); display:flex; align-items:center; justify-content:center;">
+                      🎙️
+                    </div>
+                  </div>
+                </div>
+                <button class="btn-trigger-anim" onclick="testAnimation('voice')">▶️ Test Voice Wave</button>
+              </div>
+
+              <!-- Spec 4: Loading Shimmer -->
+              <div class="anim-card">
+                <div>
+                  <h4>4. Loading Shimmer</h4>
+                  <p>1.4s smooth gradient shimmer over device cards during discovery</p>
+                  <div class="anim-demo-box">
+                    <div id="demo-shimmer-card" style="width:85%; height:32px; border-radius:6px; background:var(--surface-elevated); display:flex; align-items:center; justify-content:center; font-size:11px;">
+                      Device Card Shimmer
+                    </div>
+                  </div>
+                </div>
+                <button class="btn-trigger-anim" onclick="testAnimation('shimmer')">▶️ Test Shimmer Effect</button>
+              </div>
+
+              <!-- Spec 5: Success Scale -->
+              <div class="anim-card">
+                <div>
+                  <h4>5. Success Feedback</h4>
+                  <p>Checkmark scale-up from 0.3 to 1.15 with spring snap</p>
+                  <div class="anim-demo-box">
+                    <span id="demo-success-badge" class="feedback-badge" style="display:inline-block; font-size:13px;">✅ Device Connected</span>
+                  </div>
+                </div>
+                <button class="btn-trigger-anim" onclick="testAnimation('success')">▶️ Test Success Checkmark</button>
+              </div>
+
+              <!-- Spec 6: Error Shake -->
+              <div class="anim-card">
+                <div>
+                  <h4>6. Error Shake</h4>
+                  <p>Horizontal shake 3 times (±9px) for failed IR blaster or invalid PIN</p>
+                  <div class="anim-demo-box">
+                    <div id="demo-error-box" style="padding:6px 14px; background:rgba(239,68,68,0.2); border:1px solid #EF4444; border-radius:6px; font-size:12px; color:#EF4444;">
+                      ⚠️ Device Not Responding
+                    </div>
+                  </div>
+                </div>
+                <button class="btn-trigger-anim" onclick="testAnimation('error')">▶️ Test Error Shake</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. Icon Set Library -->
+          <div id="spec-icons" class="spec-section">
+            <h2 class="spec-title">5. Icon Set Library (SVG &amp; PNG @1x, @2x, @3x)</h2>
+            <p class="spec-desc">Complete smart remote iconography designed on 24dp grid. Click any icon to copy SVG code:</p>
+
+            <div class="icons-gallery">
+              <div class="icon-item" onclick="copyIconSvg('power')">
+                <div class="icon-item-svg">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v10M18.4 6.6a9 9 0 11-12.8 0"/></svg>
+                </div>
+                <span class="icon-item-name">Power</span>
+              </div>
+              <div class="icon-item" onclick="copyIconSvg('dpad')">
+                <div class="icon-item-svg">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>
+                </div>
+                <span class="icon-item-name">D-Pad Nav</span>
+              </div>
+              <div class="icon-item" onclick="copyIconSvg('mic')">
+                <div class="icon-item-svg">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0014 0M12 19v3M8 22h8"/></svg>
+                </div>
+                <span class="icon-item-name">Voice Mic</span>
+              </div>
+              <div class="icon-item" onclick="copyIconSvg('tv')">
+                <div class="icon-item-svg">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M8 3l4 4 4-4"/></svg>
+                </div>
+                <span class="icon-item-name">Smart TV</span>
+              </div>
+              <div class="icon-item" onclick="copyIconSvg('volume')">
+                <div class="icon-item-svg">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 010 7.07M19.07 4.93a10 10 0 010 14.14"/></svg>
+                </div>
+                <span class="icon-item-name">Volume</span>
+              </div>
+              <div class="icon-item" onclick="copyIconSvg('mute')">
+                <div class="icon-item-svg">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+                </div>
+                <span class="icon-item-name">Mute</span>
+              </div>
+              <div class="icon-item" onclick="haptic('SVG Copied')">
+                <div class="icon-item-svg" style="font-size:20px;">❄️</div>
+                <span class="icon-item-name">AC Climate</span>
+              </div>
+              <div class="icon-item" onclick="haptic('SVG Copied')">
+                <div class="icon-item-svg" style="font-size:20px;">📡</div>
+                <span class="icon-item-name">DTH Box</span>
+              </div>
+              <div class="icon-item" onclick="haptic('SVG Copied')">
+                <div class="icon-item-svg" style="font-size:20px;">💡</div>
+                <span class="icon-item-name">Smart Lights</span>
+              </div>
+              <div class="icon-item" onclick="haptic('SVG Copied')">
+                <div class="icon-item-svg" style="font-size:20px;">🔊</div>
+                <span class="icon-item-name">Soundbar</span>
+              </div>
+            </div>
+            <p style="font-size:12px; color:var(--text-secondary); margin-top:10px;">
+              Export resolutions available: <strong>@1x (24dp)</strong>, <strong>@2x (48dp)</strong>, and <strong>@3x (72dp)</strong> for high-DPI Android screens.
+            </p>
+          </div>
+
+          <!-- 6. Component Library Spec -->
+          <div id="spec-components" class="spec-section">
+            <h2 class="spec-title">6. Component Library &amp; States</h2>
+            <div class="components-demo-box">
+              <div class="comp-col">
+                <h4>Interactive Button States</h4>
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                  <button class="btn-primary">Primary Button (Electric Blue)</button>
+                  <button class="btn-secondary">Secondary Button (Dark Surface)</button>
+                  <button class="btn-power-large" style="width:auto; height:48px; border-radius:12px; font-size:14px; padding:0 20px;">⚫ Hardware Power Key</button>
+                  <button class="btn-save" style="margin:0;">Accent CTA (Orange)</button>
+                </div>
+              </div>
+              <div class="comp-col">
+                <h4>Chips, Badges &amp; Status Dots</h4>
+                <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+                  <span class="badge-pro">PRO ₹49/mo</span>
+                  <span class="status-badge-lang">EN / हिं</span>
+                  <span class="status-dot online"></span>
+                  <span style="font-size:12px; color:var(--text-secondary);">Online 🟢</span>
+                  <span class="status-dot offline"></span>
+                  <span style="font-size:12px; color:var(--text-secondary);">Offline 🔴</span>
+                </div>
+                <h4 style="margin-top:16px;">Quick Action Chips</h4>
+                <div style="display:flex; gap:8px;">
+                  <div class="quick-chip" style="cursor:default;"><span class="chip-icon">📺</span><span class="chip-label">TV</span></div>
+                  <div class="quick-chip" style="cursor:default;"><span class="chip-icon">❄️</span><span class="chip-label">AC</span></div>
+                  <div class="quick-chip" style="cursor:default;"><span class="chip-icon">📡</span><span class="chip-label">DTH</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7. Accessibility Spec -->
+          <div id="spec-accessibility" class="spec-section">
+            <h2 class="spec-title">7. Accessibility (A11y) &amp; Standards</h2>
+            <div class="audit-list">
+              <div class="audit-item">
+                ✅ <strong>Minimum Touch Target:</strong> All interactive buttons &gt;= 48dp x 48dp (WCAG 2.5.5 Level AAA compliance).
+              </div>
+              <div class="audit-item">
+                ✅ <strong>Contrast Ratio:</strong> Text Primary (#F1F5F9) on Background (#0F172A) is <strong>15.3:1</strong> (Exceeds WCAG AAA requirement of 7:1).
+              </div>
+              <div class="audit-item">
+                ✅ <strong>Indian Localization:</strong> Full bilingual English &amp; Hindi interface with transliterated voice command processing.
+              </div>
+              <div class="audit-item">
+                ✅ <strong>Haptic &amp; Sound Feedback:</strong> Tactile 12ms audio synthesizer and vibration pulse on every button press.
+              </div>
+              <div class="audit-item">
+                ✅ <strong>High Contrast &amp; Large Text:</strong> Dedicated 1-tap toggles for Elder Mode and high-contrast OLED black theme.
+              </div>
+            </div>
+          </div>
+
+          <!-- 8. Developer Handoff -->
+          <div id="spec-compose" class="spec-section">
+            <h2 class="spec-title">8. Developer Handoff (Jetpack Compose Material 3)</h2>
+            <p class="spec-desc">Production-ready Kotlin tokens for Android development:</p>
+            <div class="code-box">
+              <pre><code>// ==========================================================================
+// SmartRemote Pro - Material 3 Jetpack Compose Theme &amp; Tokens
+// ==========================================================================
+
+package com.smartremote.ui.theme
+
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.material3.Typography
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
+
+// --- Primary Brand Colors ---
+val DeepBlue = Color(0xFF1E3A8A)
+val ElectricBlue = Color(0xFF3B82F6)
+val AccentOrange = Color(0xFFF97316)
+
+// --- Neutrals Dark ---
+val BackgroundDark = Color(0xFF0F172A)
+val SurfaceDark = Color(0xFF1E293B)
+val SurfaceElevated = Color(0xFF283548)
+val TextPrimaryDark = Color(0xFFF1F5F9)
+val TextSecondary = Color(0xFF94A3B8)
+
+// --- Neutrals Light ---
+val BackgroundLight = Color(0xFFF8FAFC)
+val SurfaceLight = Color(0xFFFFFFFF)
+val TextPrimaryLight = Color(0xFF0F172A)
+
+// --- Semantics ---
+val SuccessGreen = Color(0xFF10B981)
+val ErrorRed = Color(0xFFEF4444)
+val WarningYellow = Color(0xFFF59E0B)
+val InfoBlue = Color(0xFF06B6D4)
+
+// --- Material 3 Color Schemes ---
+val DarkColors = darkColorScheme(
+    primary = ElectricBlue,
+    onPrimary = Color.White,
+    secondary = AccentOrange,
+    background = BackgroundDark,
+    surface = SurfaceDark,
+    onBackground = TextPrimaryDark,
+    onSurface = TextPrimaryDark,
+    error = ErrorRed
+)
+
+val LightColors = lightColorScheme(
+    primary = DeepBlue,
+    onPrimary = Color.White,
+    secondary = AccentOrange,
+    background = BackgroundLight,
+    surface = SurfaceLight,
+    onBackground = TextPrimaryLight,
+    onSurface = TextPrimaryLight,
+    error = ErrorRed
+)
+
+// --- Inter Typography Scale ---
+val SmartRemoteTypography = Typography(
+    headlineLarge = TextStyle(fontSize = 28.sp, fontWeight = FontWeight.SemiBold, lineHeight = 36.sp),
+    headlineMedium = TextStyle(fontSize = 24.sp, fontWeight = FontWeight.SemiBold, lineHeight = 32.sp),
+    headlineSmall = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.SemiBold, lineHeight = 28.sp),
+    bodyLarge = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Normal, lineHeight = 24.sp),
+    bodyMedium = TextStyle(fontSize = 14.sp, fontWeight = FontWeight.Normal, lineHeight = 20.sp),
+    labelSmall = TextStyle(fontSize = 12.sp, fontWeight = FontWeight.Normal, lineHeight = 16.sp)
+)
+
+// --- 4dp Dimensions ---
+object Dimens {
+    val TouchTargetMin = 48.dp
+    val Spacing4 = 4.dp
+    val Spacing8 = 8.dp
+    val Spacing12 = 12.dp
+    val Spacing16 = 16.dp
+    val Spacing24 = 24.dp
+    val CardElevation = 2.dp
+    val DpadElevation = 6.dp
+}</code></pre>
+            </div>
+          </div>
+
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script src="app.js?v=4"></script>
+</body>
+</html>

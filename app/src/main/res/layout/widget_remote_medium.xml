@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_background"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <!-- Top Row: Device Name and Power -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/widget_medium_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="SmartRemote Pro"
+            android:textColor="#00E5FF"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/widget_btn_power"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/widget_button_bg"
+            android:contentDescription="@string/action_power"
+            android:src="@drawable/ic_power" />
+    </LinearLayout>
+
+    <!-- Bottom Row: Controls -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/widget_btn_vol_down"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/widget_button_bg"
+            android:contentDescription="@string/action_vol_down"
+            android:src="@drawable/ic_volume_down" />
+
+        <ImageButton
+            android:id="@+id/widget_btn_vol_up"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/widget_button_bg"
+            android:contentDescription="@string/action_vol_up"
+            android:src="@drawable/ic_volume_up" />
+
+        <ImageButton
+            android:id="@+id/widget_btn_ch_down"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/widget_button_bg"
+            android:contentDescription="@string/action_ch_down"
+            android:src="@drawable/ic_channel_down" />
+
+        <ImageButton
+            android:id="@+id/widget_btn_ch_up"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/widget_button_bg"
+            android:contentDescription="@string/action_ch_up"
+            android:src="@drawable/ic_channel_up" />
+
+        <ImageButton
+            android:id="@+id/widget_btn_mute"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@drawable/widget_button_bg"
+            android:contentDescription="@string/action_mute"
+            android:src="@drawable/ic_volume_mute" />
+    </LinearLayout>
+
+</LinearLayout>

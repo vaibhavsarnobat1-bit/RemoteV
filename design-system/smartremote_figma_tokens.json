@@ -1,0 +1,183 @@
+{
+  "name": "SmartRemote Pro Design Tokens",
+  "version": "1.0.0",
+  "target": "Android (Material Design 3)",
+  "localization": "Indian Users (Hindi + English)",
+  "color": {
+    "primary": {
+      "deepBlue": {
+        "value": "#1E3A8A",
+        "type": "color",
+        "description": "Trust, technology brand color"
+      },
+      "electricBlue": {
+        "value": "#3B82F6",
+        "type": "color",
+        "description": "Interactive elements, sliders, active D-pad"
+      },
+      "accentOrange": {
+        "value": "#F97316",
+        "type": "color",
+        "description": "Important CTAs, Pro subscription badges"
+      }
+    },
+    "neutral": {
+      "bgDark": {
+        "value": "#0F172A",
+        "type": "color",
+        "description": "Main dark OLED background"
+      },
+      "bgLight": {
+        "value": "#F8FAFC",
+        "type": "color",
+        "description": "Light mode background"
+      },
+      "surfaceDark": {
+        "value": "#1E293B",
+        "type": "color",
+        "description": "Dark mode surface containers and remote body"
+      },
+      "surfaceLight": {
+        "value": "#FFFFFF",
+        "type": "color",
+        "description": "Light mode surface containers"
+      },
+      "textPrimaryDark": {
+        "value": "#F1F5F9",
+        "type": "color",
+        "description": "Dark mode high emphasis text (15.3:1 contrast)"
+      },
+      "textPrimaryLight": {
+        "value": "#0F172A",
+        "type": "color",
+        "description": "Light mode high emphasis text"
+      },
+      "textSecondary": {
+        "value": "#94A3B8",
+        "type": "color",
+        "description": "Subtitles, metadata, captions"
+      }
+    },
+    "semantic": {
+      "successGreen": {
+        "value": "#10B981",
+        "type": "color",
+        "description": "Online indicators, speech confirmation"
+      },
+      "errorRed": {
+        "value": "#EF4444",
+        "type": "color",
+        "description": "Hardware Power buttons, offline status"
+      },
+      "warningYellow": {
+        "value": "#F59E0B",
+        "type": "color",
+        "description": "Voice command accents, warning states"
+      },
+      "infoBlue": {
+        "value": "#06B6D4",
+        "type": "color",
+        "description": "AC climate cooling indicator"
+      }
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "value": "Inter",
+      "type": "fontFamilies"
+    },
+    "h1": {
+      "fontSize": { "value": "28sp", "type": "fontSizes" },
+      "fontWeight": { "value": "600", "type": "fontWeights" },
+      "lineHeight": { "value": "36sp", "type": "lineHeights" }
+    },
+    "h2": {
+      "fontSize": { "value": "24sp", "type": "fontSizes" },
+      "fontWeight": { "value": "600", "type": "fontWeights" },
+      "lineHeight": { "value": "32sp", "type": "lineHeights" }
+    },
+    "h3": {
+      "fontSize": { "value": "20sp", "type": "fontSizes" },
+      "fontWeight": { "value": "600", "type": "fontWeights" },
+      "lineHeight": { "value": "28sp", "type": "lineHeights" }
+    },
+    "body": {
+      "fontSize": { "value": "16sp", "type": "fontSizes" },
+      "fontWeight": { "value": "400", "type": "fontWeights" },
+      "lineHeight": { "value": "24sp", "type": "lineHeights" }
+    },
+    "caption": {
+      "fontSize": { "value": "14sp", "type": "fontSizes" },
+      "fontWeight": { "value": "400", "type": "fontWeights" },
+      "lineHeight": { "value": "20sp", "type": "lineHeights" }
+    },
+    "small": {
+      "fontSize": { "value": "12sp", "type": "fontSizes" },
+      "fontWeight": { "value": "400", "type": "fontWeights" },
+      "lineHeight": { "value": "16sp", "type": "lineHeights" }
+    },
+    "button": {
+      "fontSize": { "value": "14sp", "type": "fontSizes" },
+      "fontWeight": { "value": "500", "type": "fontWeights" },
+      "lineHeight": { "value": "20sp", "type": "lineHeights" }
+    }
+  },
+  "spacing": {
+    "grid": { "value": "4dp", "type": "spacing" },
+    "space4": { "value": "4dp", "type": "spacing" },
+    "space8": { "value": "8dp", "type": "spacing" },
+    "space12": { "value": "12dp", "type": "spacing" },
+    "space16": { "value": "16dp", "type": "spacing" },
+    "space20": { "value": "20dp", "type": "spacing" },
+    "space24": { "value": "24dp", "type": "spacing" },
+    "space32": { "value": "32dp", "type": "spacing" },
+    "space48": { "value": "48dp", "type": "spacing" }
+  },
+  "elevation": {
+    "level0": { "value": "none", "type": "boxShadow" },
+    "level1": { "value": "0px 2px 8px rgba(0, 0, 0, 0.3)", "type": "boxShadow", "description": "Cards" },
+    "level2": { "value": "0px 6px 16px rgba(0, 0, 0, 0.4)", "type": "boxShadow", "description": "D-Pad and FAB" },
+    "level3": { "value": "0px 12px 32px rgba(0, 0, 0, 0.6)", "type": "boxShadow", "description": "Modals and Overlays" }
+  },
+  "animation": {
+    "screenTransition": {
+      "duration": "300ms",
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "type": "transition",
+      "description": "Slide + Fade"
+    },
+    "buttonPress": {
+      "duration": "100ms",
+      "scale": "0.95",
+      "easing": "cubic-bezier(0.4, 0, 0.2, 1)",
+      "type": "transform"
+    },
+    "voicePulse": {
+      "duration": "1800ms",
+      "type": "loop",
+      "description": "Pulsing radial soundwave"
+    },
+    "cardShimmer": {
+      "duration": "1400ms",
+      "type": "loop",
+      "description": "Linear gradient loading sweep"
+    },
+    "successCheck": {
+      "duration": "350ms",
+      "easing": "cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+      "type": "scaleUp"
+    },
+    "errorShake": {
+      "duration": "320ms",
+      "count": 3,
+      "distance": "9px",
+      "type": "shake"
+    }
+  },
+  "accessibility": {
+    "minTouchTarget": "48dp",
+    "contrastRatio": "15.3:1 (AAA)",
+    "bilingualLanguages": ["English", "Hindi"],
+    "voiceEngine": "Offline Native SpeechRecognizer (Hindi transliterated + English)"
+  }
+}

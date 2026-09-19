@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">SmartRemote Pro</string>
+    <string name="tile_remote_power">Smart Remote</string>
+    <string name="widget_small_desc">Quick Power &amp; Volume controls</string>
+    <string name="widget_medium_desc">Power, Volume, Channel &amp; Mute controls</string>
+    <string name="widget_large_desc">Full remote control D-pad, Volume, Channel &amp; Apps</string>
+    <string name="action_power">Power</string>
+    <string name="action_vol_up">Vol +</string>
+    <string name="action_vol_down">Vol -</string>
+    <string name="action_ch_up">Ch +</string>
+    <string name="action_ch_down">Ch -</string>
+    <string name="action_mute">Mute</string>
+    <string name="action_source">Source</string>
+    <string name="action_home">Home</string>
+    <string name="action_back">Back</string>
+    <string name="action_menu">Menu</string>
+    <string name="action_ok">OK</string>
+    <string name="airtel_xstream">Airtel Xstream Box</string>
+    <string name="notification_channel_name">Remote Control Service</string>
+    <string name="notification_channel_desc">Shows mini remote in notification panel</string>
+</resources>

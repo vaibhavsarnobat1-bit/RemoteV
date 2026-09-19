@@ -1,0 +1,299 @@
+{
+  "protocol": "NEC_RC5_SIRC",
+  "brands": {
+    "Samsung": {
+      "TV": {
+        "power": "0x20DF10EF",
+        "powerOff": "0x20DF23DC",
+        "volUp": "0x20DF40BF",
+        "volDown": "0x20DFC03F",
+        "chUp": "0x20DF00FF",
+        "chDown": "0x20DF807F",
+        "mute": "0x20DFF00F",
+        "source": "0x20DF807F",
+        "menu": "0x20DF58A7",
+        "back": "0x20DF14EB",
+        "home": "0x20DF9E61",
+        "ok": "0x20DF22DD",
+        "up": "0x20DF02FD",
+        "down": "0x20DF827D",
+        "left": "0x20DFE01F",
+        "right": "0x20DF609F",
+        "netflix": "0x20DFD926",
+        "youtube": "0x20DF0CF3",
+        "prime": "0x20DF1BE4",
+        "num0": "0x20DF08F7",
+        "num1": "0x20DF8877",
+        "num2": "0x20DF48B7",
+        "num3": "0x20DFC837",
+        "num4": "0x20DF28D7",
+        "num5": "0x20DFA857",
+        "num6": "0x20DF6897",
+        "num7": "0x20DFE817",
+        "num8": "0x20DF18E7",
+        "num9": "0x20DF9867"
+      },
+      "AC": {
+        "power": "0xB24D1FE0",
+        "tempUp": "0xB24D5FA0",
+        "tempDown": "0xB24DDFA2",
+        "fanSpeed": "0xB24D3FC0",
+        "modeCool": "0xB24D7F80",
+        "modeHeat": "0xB24DBF40",
+        "modeFan": "0xB24DFF00",
+        "swing": "0xB24D0FF0"
+      },
+      "Soundbar": {
+        "power": "0xC23D10EF",
+        "volUp": "0xC23D40BF",
+        "volDown": "0xC23DC03F",
+        "mute": "0xC23DF00F",
+        "bassUp": "0xC23D20DF",
+        "bassDown": "0xC23DA05F",
+        "optical": "0xC23D609F",
+        "bluetooth": "0xC23DE01F"
+      }
+    },
+    "LG": {
+      "TV": {
+        "power": "0x20DF10EF",
+        "volUp": "0x20DF40BF",
+        "volDown": "0x20DFC03F",
+        "chUp": "0x20DF00FF",
+        "chDown": "0x20DF807F",
+        "mute": "0x20DF906F",
+        "source": "0x20DFD02F",
+        "menu": "0x20DFC23D",
+        "back": "0x20DF14EB",
+        "home": "0x20DF3EC1",
+        "ok": "0x20DF22DD",
+        "up": "0x20DF02FD",
+        "down": "0x20DF827D",
+        "left": "0x20DFE01F",
+        "right": "0x20DF609F",
+        "netflix": "0x20DF7E81",
+        "youtube": "0x20DF5FA0"
+      },
+      "AC": {
+        "power": "0x880014B",
+        "tempUp": "0x880834F",
+        "tempDown": "0x880824E",
+        "fanSpeed": "0x8808440",
+        "modeCool": "0x880804C",
+        "swing": "0x881314C"
+      }
+    },
+    "Sony": {
+      "TV": {
+        "power": "0xA90",
+        "volUp": "0x490",
+        "volDown": "0xC90",
+        "chUp": "0x90",
+        "chDown": "0x890",
+        "mute": "0x290",
+        "source": "0xA50",
+        "home": "0x070",
+        "back": "0x62E9",
+        "ok": "0xA70",
+        "up": "0x2F0",
+        "down": "0xAF0",
+        "left": "0x2D0",
+        "right": "0xCD0"
+      },
+      "Soundbar": {
+        "power": "0x540C",
+        "volUp": "0x240C",
+        "volDown": "0x640C",
+        "mute": "0x140C",
+        "tvAudio": "0x740C",
+        "bluetooth": "0x340C"
+      },
+      "DVD": {
+        "power": "0x1A8B",
+        "play": "0x5A8B",
+        "pause": "0x9A8B",
+        "stop": "0x3A8B",
+        "eject": "0x6E8B"
+      }
+    },
+    "Xiaomi": {
+      "TV": {
+        "power": "0x7F8000FF",
+        "volUp": "0x7F8040BF",
+        "volDown": "0x7F80C03F",
+        "home": "0x7F80906F",
+        "back": "0x7F8010EF",
+        "menu": "0x7F8050AF",
+        "ok": "0x7F8020DF",
+        "up": "0x7F80A05F",
+        "down": "0x7F80609F",
+        "left": "0x7F80E01F",
+        "right": "0x7F8030CF"
+      }
+    },
+    "OnePlus": {
+      "TV": {
+        "power": "0x4CB3817E",
+        "volUp": "0x4CB341BE",
+        "volDown": "0x4CB3C13E",
+        "mute": "0x4CB3A15E",
+        "home": "0x4CB321DE",
+        "back": "0x4CB3619E",
+        "ok": "0x4CB3E11E",
+        "up": "0x4CB311EE",
+        "down": "0x4CB3916E",
+        "left": "0x4CB351AE",
+        "right": "0x4CB3D12E"
+      }
+    },
+    "Panasonic": {
+      "TV": {
+        "power": "0x40040100BCBD",
+        "volUp": "0x400401000405",
+        "volDown": "0x400401008485",
+        "chUp": "0x400401002C2D",
+        "chDown": "0x40040100ACAD",
+        "mute": "0x400401004C4D",
+        "menu": "0x400401004A4B",
+        "ok": "0x400401009293"
+      }
+    },
+    "Daikin": {
+      "AC": {
+        "power": "0x11DA2700",
+        "tempUp": "0x11DA2710",
+        "tempDown": "0x11DA2720",
+        "fanSpeed": "0x11DA2730",
+        "modeCool": "0x11DA2740",
+        "swing": "0x11DA2750"
+      }
+    },
+    "Voltas": {
+      "AC": {
+        "power": "0x55AA10EF",
+        "tempUp": "0x55AA20DF",
+        "tempDown": "0x55AA30CF",
+        "fanSpeed": "0x55AA40BF",
+        "modeCool": "0x55AA50AF",
+        "swing": "0x55AA609F"
+      }
+    },
+    "Hitachi": {
+      "AC": {
+        "power": "0x6A9512ED",
+        "tempUp": "0x6A9513EC",
+        "tempDown": "0x6A9514EB",
+        "fanSpeed": "0x6A9515EA",
+        "modeCool": "0x6A9516E9"
+      }
+    },
+    "Airtel": {
+      "Xstream": {
+        "power": "0xA25D7887",
+        "guide": "0xA25D48B7",
+        "home": "0xA25DC837",
+        "back": "0xA25D28D7",
+        "menu": "0xA25DA857",
+        "ok": "0xA25D6897",
+        "up": "0xA25DE817",
+        "down": "0xA25D18E7",
+        "left": "0xA25D9867",
+        "right": "0xA25D58A7",
+        "volUp": "0xA25D38C7",
+        "volDown": "0xA25DB847",
+        "chUp": "0xA25D708F",
+        "chDown": "0xA25DF00F",
+        "mute": "0xA25D08F7",
+        "apps": "0xA25D8877",
+        "netflix": "0xA25D40BF",
+        "youtube": "0xA25DC03F",
+        "prime": "0xA25D20DF",
+        "hotstar": "0xA25DA05F",
+        "red": "0xA25D609F",
+        "green": "0xA25DE01F",
+        "yellow": "0xA25D10EF",
+        "blue": "0xA25D906F",
+        "num0": "0xA25D00FF",
+        "num1": "0xA25D807F",
+        "num2": "0xA25D40BF",
+        "num3": "0xA25DC03F",
+        "num4": "0xA25D20DF",
+        "num5": "0xA25DA05F",
+        "num6": "0xA25D609F",
+        "num7": "0xA25DE01F",
+        "num8": "0xA25D10EF",
+        "num9": "0xA25D906F"
+      }
+    },
+    "TataPlay": {
+      "SetTopBox": {
+        "power": "0xE0E040BF",
+        "guide": "0xE0E0F20D",
+        "home": "0xE0E058A7",
+        "back": "0xE0E01AE5",
+        "ok": "0xE0E016E9",
+        "up": "0xE0E006F9",
+        "down": "0xE0E08679",
+        "left": "0xE0E0A659",
+        "right": "0xE0E046B9",
+        "volUp": "0xE0E0E01F",
+        "volDown": "0xE0E0D02F",
+        "chUp": "0xE0E048B7",
+        "chDown": "0xE0E008F7",
+        "mute": "0xE0E0F00F"
+      }
+    },
+    "DishTV": {
+      "SetTopBox": {
+        "power": "0x10EF20DF",
+        "guide": "0x10EF18E7",
+        "menu": "0x10EFA857",
+        "ok": "0x10EF28D7",
+        "up": "0x10EF08F7",
+        "down": "0x10EF8877",
+        "left": "0x10EFC837",
+        "right": "0x10EF48B7",
+        "volUp": "0x10EF609F",
+        "volDown": "0x10EFE01F",
+        "chUp": "0x10EF50AF",
+        "chDown": "0x10EFD02F",
+        "mute": "0x10EF708F"
+      }
+    },
+    "SunDirect": {
+      "SetTopBox": {
+        "power": "0x40BF10EF",
+        "guide": "0x40BFA05F",
+        "ok": "0x40BF20DF",
+        "up": "0x40BF00FF",
+        "down": "0x40BF807F",
+        "left": "0x40BFC03F",
+        "right": "0x40BF40BF",
+        "volUp": "0x40BF609F",
+        "volDown": "0x40BFE01F",
+        "chUp": "0x40BF906F",
+        "chDown": "0x40BF18E7"
+      }
+    },
+    "JBL": {
+      "Soundbar": {
+        "power": "0x807F02FD",
+        "volUp": "0x807F08F7",
+        "volDown": "0x807F8877",
+        "mute": "0x807F906F",
+        "bass": "0x807FA05F",
+        "bluetooth": "0x807FB04F"
+      }
+    },
+    "Bose": {
+      "Soundbar": {
+        "power": "0x5EA1D827",
+        "volUp": "0x5EA158A7",
+        "volDown": "0x5EA1D02F",
+        "mute": "0x5EA138C7",
+        "tv": "0x5EA1B847",
+        "bluetooth": "0x5EA17887"
+      }
+    }
+  }
+}

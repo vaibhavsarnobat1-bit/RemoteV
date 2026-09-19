@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:background="#101726"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingStart="12dp"
+    android:paddingEnd="12dp">
+
+    <ImageButton
+        android:id="@+id/btn_notif_power"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:background="@drawable/widget_button_bg"
+        android:contentDescription="@string/action_power"
+        android:src="@drawable/ic_power" />
+
+    <TextView
+        android:id="@+id/tv_notif_device"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingStart="12dp"
+        android:paddingEnd="8dp"
+        android:text="Smart TV"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <ImageButton
+        android:id="@+id/btn_notif_vol_down"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="6dp"
+        android:background="@drawable/widget_button_bg"
+        android:contentDescription="@string/action_vol_down"
+        android:src="@drawable/ic_volume_down" />
+
+    <ImageButton
+        android:id="@+id/btn_notif_vol_up"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="6dp"
+        android:background="@drawable/widget_button_bg"
+        android:contentDescription="@string/action_vol_up"
+        android:src="@drawable/ic_volume_up" />
+
+    <ImageButton
+        android:id="@+id/btn_notif_mute"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/widget_button_bg"
+        android:contentDescription="@string/action_mute"
+        android:src="@drawable/ic_volume_mute" />
+
+</LinearLayout>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_background"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/widget_large_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="SmartRemote Pro"
+            android:textColor="#00E5FF"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/widget_btn_source"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/widget_button_bg"
+            android:text="SRC"
+            android:textColor="#FFFFFF"
+            android:textSize="11sp" />
+
+        <ImageButton
+            android:id="@+id/widget_btn_power"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="@drawable/widget_button_bg"
+            android:contentDescription="@string/action_power"
+            android:src="@drawable/ic_power" />
+    </LinearLayout>
+
+    <!-- Navigation D-pad Simulation -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/widget_btn_up"
+            android:layout_width="54dp"
+            android:layout_height="38dp"
+            android:background="@drawable/widget_button_bg"
+            android:text="▲"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/widget_btn_left"
+                android:layout_width="54dp"
+                android:layout_height="38dp"
+                android:background="@drawable/widget_button_bg"
+                android:text="◀"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/widget_btn_ok"
+                android:layout_width="54dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/widget_button_bg"
+                android:text="OK"
+                android:textColor="#00E5FF"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/widget_btn_right"
+                android:layout_width="54dp"
+                android:layout_height="38dp"
+                android:background="@drawable/widget_button_bg"
+                android:text="▶"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/widget_btn_down"
+            android:layout_width="54dp"
+            android:layout_height="38dp"
+            android:background="@drawable/widget_button_bg"
+            android:text="▼"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <!-- Bottom Action Rockers -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/widget_btn_vol_down"
+            android:layout_width="44dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/widget_button_bg"
+            android:src="@drawable/ic_volume_down" />
+
+        <ImageButton
+            android:id="@+id/widget_btn_vol_up"
+            android:layout_width="44dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/widget_button_bg"
+            android:src="@drawable/ic_volume_up" />
+
+        <ImageButton
+            android:id="@+id/widget_btn_ch_down"
+            android:layout_width="44dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/widget_button_bg"
+            android:src="@drawable/ic_channel_down" />
+
+        <ImageButton
+            android:id="@+id/widget_btn_ch_up"
+            android:layout_width="44dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/widget_button_bg"
+            android:src="@drawable/ic_channel_up" />
+
+        <ImageButton
+            android:id="@+id/widget_btn_mute"
+            android:layout_width="44dp"
+            android:layout_height="40dp"
+            android:background="@drawable/widget_button_bg"
+            android:src="@drawable/ic_volume_mute" />
+    </LinearLayout>
+
+</LinearLayout>
