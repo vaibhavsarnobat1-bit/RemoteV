@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>SmartRemote Pro - Universal Remote & PC Trackpad</title>
+  <meta name="description" content="All-in-one Universal Remote for Smart TV, AC, Airtel Xstream DTH, Soundbar, and Wireless PC Mouse Trackpad.">
+  <meta name="theme-color" content="#0a0e17">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/elder-mode.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Top Navigation Bar -->
+    <header class="top-nav-bar">
+      <div class="brand-badge">
+        <div class="logo-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="2" width="14" height="20" rx="4"></rect>
+            <line x1="12" y1="18" x2="12.01" y2="18"></line>
+            <circle cx="12" cy="7" r="1.5"></circle>
+          </svg>
+        </div>
+        <div>
+          <h1>SmartRemote</h1>
+        </div>
+        <span class="pro-tag">PRO</span>
+      </div>
+
+      <div class="nav-actions">
+        <div class="status-pill" id="statusPill" title="Connection Status">
+          <span class="status-dot" id="statusDot"></span>
+          <span id="statusText">Simulation</span>
+        </div>
+
+        <button class="icon-btn-round" id="elderModeToggleBtn" title="Elder Mode (Big Buttons)">
+          👴
+        </button>
+
+        <button class="icon-btn-round" id="voiceTriggerBtn" title="Voice Control (English / Hindi)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="22"></line>
+          </svg>
+        </button>
+
+        <button class="icon-btn-round" id="infoModalTrigger" title="Connect Phone / Info">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Device Categories Scrollable Tabs -->
+    <nav class="device-tabs-scroll">
+      <button class="tab-pill active" data-target="panelTv">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect>
+          <polyline points="17 2 12 7 7 2"></polyline>
+        </svg>
+        Smart TV
+      </button>
+
+      <button class="tab-pill" data-target="panelPc">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+          <line x1="8" y1="21" x2="16" y2="21"></line>
+          <line x1="12" y1="17" x2="12" y2="21"></line>
+        </svg>
+        PC Touchpad
+      </button>
+
+      <button class="tab-pill" data-target="panelAirtel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M4 11a9 9 0 0 1 9 9"></path>
+          <path d="M4 4a16 16 0 0 1 16 16"></path>
+          <circle cx="5" cy="19" r="1"></circle>
+        </svg>
+        Airtel DTH
+      </button>
+
+      <button class="tab-pill" data-target="panelAc">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07l14.14-14.14"></path>
+        </svg>
+        AC Control
+      </button>
+
+      <button class="tab-pill" data-target="panelSoundbar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+        Soundbar
+      </button>
+
+      <button class="tab-pill" data-target="panelMacros">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        </svg>
+        Macros
+      </button>
+    </nav>
+
+    <!-- Main Viewport Area -->
+    <main class="remote-viewport">
+
+      <!-- ====================================================================
+           1. SMART TV REMOTE PANEL
+           ==================================================================== -->
+      <section class="remote-panel active" id="panelTv">
+        <div style="display: flex; gap: 12px; justify-content: space-between;">
+          <button class="tactile-btn danger" style="flex: 1;" onclick="window.tvRemote.power()">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+              <line x1="12" y1="2" x2="12" y2="12"></line>
+            </svg>
+            POWER
+          </button>
+          <button class="tactile-btn" style="flex: 1;" onclick="window.tvRemote.action('SOURCE')">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            SOURCE
+          </button>
+          <button class="tactile-btn" style="flex: 1;" onclick="window.tvRemote.mute()">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <line x1="23" y1="9" x2="17" y2="15"></line>
+              <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+            MUTE
+          </button>
+        </div>
+
+        <!-- TV Directional D-Pad -->
+        <div class="dpad-container">
+          <div class="dpad">
+            <button class="dpad-btn dpad-up" onclick="window.tvRemote.dpad('UP')" aria-label="Up">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="18 15 12 9 6 15"></polyline>
+              </svg>
+            </button>
+            <button class="dpad-btn dpad-down" onclick="window.tvRemote.dpad('DOWN')" aria-label="Down">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <button class="dpad-btn dpad-left" onclick="window.tvRemote.dpad('LEFT')" aria-label="Left">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <button class="dpad-btn dpad-right" onclick="window.tvRemote.dpad('RIGHT')" aria-label="Right">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+            <button class="dpad-center" onclick="window.tvRemote.dpad('OK')">OK</button>
+          </div>
+        </div>
+
+        <!-- Volume & Channel Rockers -->
+        <div class="rockers-grid">
+          <div class="rocker-card">
+            <button class="rocker-btn" onclick="window.tvRemote.volumeUp()">+</button>
+            <div class="rocker-divider"></div>
+            <span class="rocker-label">VOL</span>
+            <div class="rocker-divider"></div>
+            <button class="rocker-btn" onclick="window.tvRemote.volumeDown()">−</button>
+          </div>
+
+          <div class="rocker-card">
+            <button class="rocker-btn" onclick="window.tvRemote.channelUp()">▲</button>
+            <div class="rocker-divider"></div>
+            <span class="rocker-label">CH</span>
+            <div class="rocker-divider"></div>
+            <button class="rocker-btn" onclick="window.tvRemote.channelDown()">▼</button>
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div style="display: flex; gap: 10px;">
+          <button class="tactile-btn" style="flex: 1;" onclick="window.tvRemote.action('BACK')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 14 4 9 9 4"></polyline>
+              <path d="M20 20v-7a4 4 0 0 0-4-4H4"></path>
+            </svg>
+            BACK
+          </button>
+          <button class="tactile-btn" style="flex: 1;" onclick="window.tvRemote.action('HOME')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            HOME
+          </button>
+          <button class="tactile-btn" style="flex: 1;" onclick="window.tvRemote.action('MENU')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+            MENU
+          </button>
+        </div>
+
+        <!-- Direct Streaming Launchers -->
+        <div>
+          <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px; display: block;">Quick Launch Apps</span>
+          <div class="streaming-apps-grid">
+            <button class="app-btn netflix" onclick="window.tvRemote.launchApp('Netflix')">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="#e50914">
+                <path d="M5.398 0v24h4.153V10.457L14.449 24h4.153V0h-4.153v13.543L9.551 0H5.398z"/>
+              </svg>
+              <span>Netflix</span>
+            </button>
+            <button class="app-btn youtube" onclick="window.tvRemote.launchApp('YouTube')">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="#ff0000">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+              <span>YouTube</span>
+            </button>
+            <button class="app-btn prime" onclick="window.tvRemote.launchApp('Prime Video')">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="#00a8e1">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M8 12h8" stroke="#fff" stroke-width="2"></path>
+              </svg>
+              <span>Prime</span>
+            </button>
+            <button class="app-btn hotstar" onclick="window.tvRemote.launchApp('Disney+ Hotstar')">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="#107be5">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              <span>Hotstar</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           2. PC WIRELESS TOUCHPAD & KEYBOARD PANEL
+           ==================================================================== -->
+      <section class="remote-panel" id="panelPc">
+        <div class="touchpad-surface" id="pcTouchpad">
+          <div class="touchpad-hint">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+              <path d="M12 2a4 4 0 0 0-4 4v6a4 4 0 0 0 8 0V6a4 4 0 0 0-4-4Z"></path>
+              <line x1="12" y1="6" x2="12" y2="8"></line>
+            </svg>
+            <div><strong>Wireless Touchpad</strong></div>
+            <div>1-Finger: Move & Tap to Click</div>
+            <div>2-Fingers: Scroll & Right Click</div>
+          </div>
+        </div>
+
+        <div class="mouse-buttons-row">
+          <button class="mouse-click-btn" onclick="window.pcRemote.click('left')">LEFT CLICK</button>
+          <button class="mouse-click-btn" onclick="window.pcRemote.click('right')">RIGHT CLICK</button>
+        </div>
+
+        <!-- PC Keyboard Text Sender -->
+        <div style="display: flex; gap: 8px;">
+          <input type="text" id="pcTextInput" placeholder="Type text to send to PC..." style="flex: 1; padding: 12px 14px; border-radius: var(--radius-md); background: var(--bg-card); border: 1px solid var(--glass-border); color: #fff; font-family: inherit; font-size: 0.9rem; outline: none;">
+          <button class="tactile-btn primary" id="pcSendTextBtn" style="padding: 12px 16px;">Send</button>
+        </div>
+
+        <!-- Windows Shortcuts Grid -->
+        <div>
+          <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px; display: block;">Windows Shortcuts</span>
+          <div class="pc-shortcuts-grid">
+            <button class="shortcut-btn" onclick="window.pcRemote.sendKey('win')">⊞ Win</button>
+            <button class="shortcut-btn" onclick="window.pcRemote.sendKey('alt_tab')">Alt + Tab</button>
+            <button class="shortcut-btn" onclick="window.pcRemote.sendKey('ctrl_c')">Ctrl + C</button>
+            <button class="shortcut-btn" onclick="window.pcRemote.sendKey('ctrl_v')">Ctrl + V</button>
+            <button class="shortcut-btn" onclick="window.pcRemote.sendKey('esc')">Esc</button>
+            <button class="shortcut-btn" onclick="window.pcRemote.sendKey('enter')">Enter ↵</button>
+          </div>
+        </div>
+
+        <!-- PPT Presentation Remote -->
+        <div>
+          <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px; display: block;">PPT Presentation Clicker</span>
+          <div class="ppt-controls-row">
+            <button class="shortcut-btn" onclick="window.pcRemote.sendPpt('f5')">▶ F5 Start</button>
+            <button class="shortcut-btn" onclick="window.pcRemote.sendPpt('prev')">◀ Prev Slide</button>
+            <button class="shortcut-btn" onclick="window.pcRemote.sendPpt('next')">Next Slide ▶</button>
+            <button class="shortcut-btn" onclick="window.pcRemote.sendPpt('black')">⬛ Blank (B)</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           3. AIRTEL XSTREAM DTH REMOTE & EPG PANEL
+           ==================================================================== -->
+      <section class="remote-panel" id="panelAirtel">
+        <div style="display: flex; justify-content: space-between; gap: 10px;">
+          <button class="tactile-btn danger" style="flex: 1;" onclick="window.airtelRemote.sendAction('POWER')">POWER</button>
+          <button class="tactile-btn" style="flex: 1;" onclick="window.airtelRemote.sendAction('GUIDE')">GUIDE</button>
+          <button class="tactile-btn" style="flex: 1;" onclick="window.airtelRemote.sendAction('INFO')">INFO</button>
+        </div>
+
+        <!-- Airtel Color Keys -->
+        <div class="color-keys-row">
+          <button class="color-key-btn red" onclick="window.airtelRemote.sendColorKey('red')">RED</button>
+          <button class="color-key-btn green" onclick="window.airtelRemote.sendColorKey('green')">GREEN</button>
+          <button class="color-key-btn yellow" onclick="window.airtelRemote.sendColorKey('yellow')">YELLOW</button>
+          <button class="color-key-btn blue" onclick="window.airtelRemote.sendColorKey('blue')">BLUE</button>
+        </div>
+
+        <!-- Airtel Numeric Pad -->
+        <div class="numpad-grid">
+          <button class="numpad-btn" onclick="window.airtelRemote.sendDigit(1)">1</button>
+          <button class="numpad-btn" onclick="window.airtelRemote.sendDigit(2)">2</button>
+          <button class="numpad-btn" onclick="window.airtelRemote.sendDigit(3)">3</button>
+          <button class="numpad-btn" onclick="window.airtelRemote.sendDigit(4)">4</button>
+          <button class="numpad-btn" onclick="window.airtelRemote.sendDigit(5)">5</button>
+          <button class="numpad-btn" onclick="window.airtelRemote.sendDigit(6)">6</button>
+          <button class="numpad-btn" onclick="window.airtelRemote.sendDigit(7)">7</button>
+          <button class="numpad-btn" onclick="window.airtelRemote.sendDigit(8)">8</button>
+          <button class="numpad-btn" onclick="window.airtelRemote.sendDigit(9)">9</button>
+          <button class="numpad-btn" onclick="window.airtelRemote.sendAction('RECALL')">↩</button>
+          <button class="numpad-btn" onclick="window.airtelRemote.sendDigit(0)">0</button>
+          <button class="numpad-btn" onclick="window.airtelRemote.sendAction('MUTE')">🔇</button>
+        </div>
+
+        <!-- Live EPG Channel Guide -->
+        <div class="epg-guide-container">
+          <div class="epg-header">
+            <h3>Live EPG Channel Guide</h3>
+            <span class="status-pill">1-Tap Tune</span>
+          </div>
+
+          <input type="text" id="epgSearchInput" placeholder="Search channels (e.g. Star, Sports, 277)..." style="width: 100%; padding: 10px 12px; border-radius: var(--radius-sm); background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: #fff; font-family: inherit; font-size: 0.85rem; outline: none;">
+
+          <div class="epg-categories">
+            <button class="epg-cat-chip active" data-cat="all">All</button>
+            <button class="epg-cat-chip" data-cat="entertainment">Entertainment</button>
+            <button class="epg-cat-chip" data-cat="sports">Sports</button>
+            <button class="epg-cat-chip" data-cat="movies">Movies</button>
+            <button class="epg-cat-chip" data-cat="news">News</button>
+            <button class="epg-cat-chip" data-cat="kids">Kids</button>
+            <button class="epg-cat-chip" data-cat="regional">Regional</button>
+          </div>
+
+          <div class="epg-list" id="epgList">
+            <!-- Dynamic channels rendered via airtel-remote.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           4. AIR CONDITIONER (AC) PANEL
+           ==================================================================== -->
+      <section class="remote-panel" id="panelAc">
+        <div style="display: flex; justify-content: space-between; gap: 12px;">
+          <button class="tactile-btn danger" style="flex: 1;" onclick="window.acRemote.power()">
+            POWER
+          </button>
+          <button class="tactile-btn" style="flex: 1;" onclick="window.acRemote.toggleSwing()">
+            SWING ↕
+          </button>
+          <button class="tactile-btn" style="flex: 1;" onclick="window.acRemote.toggleEco()">
+            ECO 🌿
+          </button>
+        </div>
+
+        <!-- Circular Temperature Display -->
+        <div class="ac-temp-circle-container">
+          <div class="ac-temp-display">
+            <div class="ac-temp-val" id="acTempVal">24</div>
+            <div class="ac-temp-unit">°C</div>
+            <div class="ac-mode-badge" id="acModeBadge">COOL • AUTO</div>
+          </div>
+
+          <div class="ac-stepper-row">
+            <button class="ac-step-btn" onclick="window.acRemote.tempDown()">−</button>
+            <button class="ac-step-btn" onclick="window.acRemote.tempUp()">+</button>
+          </div>
+        </div>
+
+        <!-- AC Mode Selection -->
+        <div>
+          <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px; display: block;">Operating Mode</span>
+          <div class="ac-modes-grid">
+            <button class="tactile-btn ac-mode-btn primary" data-mode="cool" onclick="window.acRemote.setMode('cool')">❄️ Cool</button>
+            <button class="tactile-btn ac-mode-btn" data-mode="heat" onclick="window.acRemote.setMode('heat')">☀️ Heat</button>
+            <button class="tactile-btn ac-mode-btn" data-mode="fan" onclick="window.acRemote.setMode('fan')">💨 Fan</button>
+            <button class="tactile-btn ac-mode-btn" data-mode="dry" onclick="window.acRemote.setMode('dry')">💧 Dry</button>
+          </div>
+        </div>
+
+        <!-- Fan Speeds -->
+        <div>
+          <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px; display: block;">Fan Speed</span>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
+            <button class="shortcut-btn" onclick="window.acRemote.setFan('auto')">Auto</button>
+            <button class="shortcut-btn" onclick="window.acRemote.setFan('low')">Low</button>
+            <button class="shortcut-btn" onclick="window.acRemote.setFan('med')">Medium</button>
+            <button class="shortcut-btn" onclick="window.acRemote.setFan('turbo')">Turbo 🚀</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           5. SOUNDBAR & AUDIO PANEL
+           ==================================================================== -->
+      <section class="remote-panel" id="panelSoundbar">
+        <div style="display: flex; justify-content: space-between; gap: 12px;">
+          <button class="tactile-btn danger" style="flex: 1;" onclick="window.soundbarRemote.power()">POWER</button>
+          <button class="tactile-btn" style="flex: 1;" onclick="window.soundbarRemote.mute()">MUTE</button>
+        </div>
+
+        <!-- Audio Source Selectors -->
+        <div>
+          <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px; display: block;">Input Source</span>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
+            <button class="shortcut-btn" onclick="window.soundbarRemote.setInput('hdmi_arc')">HDMI ARC</button>
+            <button class="shortcut-btn" onclick="window.soundbarRemote.setInput('optical')">Optical</button>
+            <button class="shortcut-btn" onclick="window.soundbarRemote.setInput('bluetooth')">Bluetooth</button>
+            <button class="shortcut-btn" onclick="window.soundbarRemote.setInput('aux')">AUX</button>
+          </div>
+        </div>
+
+        <!-- Volume Rocker for Soundbar -->
+        <div class="rocker-card" style="width: 100%;">
+          <button class="rocker-btn" onclick="window.soundbarRemote.volumeUp()">+</button>
+          <div class="rocker-divider"></div>
+          <span class="rocker-label">SOUNDBAR VOLUME</span>
+          <div class="rocker-divider"></div>
+          <button class="rocker-btn" onclick="window.soundbarRemote.volumeDown()">−</button>
+        </div>
+
+        <!-- Bass & Treble Tuning -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div class="rocker-card">
+            <span class="rocker-label">BASS: <strong id="soundbarBassVal" style="color:var(--accent-cyan);">+3</strong></span>
+            <div style="display:flex; width:100%; gap:8px;">
+              <button class="tactile-btn" style="flex:1;" onclick="window.soundbarRemote.bassDown()">−</button>
+              <button class="tactile-btn" style="flex:1;" onclick="window.soundbarRemote.bassUp()">+</button>
+            </div>
+          </div>
+
+          <div class="rocker-card">
+            <span class="rocker-label">TREBLE: <strong id="soundbarTrebleVal" style="color:var(--accent-purple);">+2</strong></span>
+            <div style="display:flex; width:100%; gap:8px;">
+              <button class="tactile-btn" style="flex:1;" onclick="window.soundbarRemote.trebleDown()">−</button>
+              <button class="tactile-btn" style="flex:1;" onclick="window.soundbarRemote.trebleUp()">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- EQ Sound Presets -->
+        <div>
+          <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px; display: block;">EQ Presets</span>
+          <div class="soundbar-eq-grid">
+            <button class="eq-btn active" data-eq="movie" onclick="window.soundbarRemote.setEq('movie')">🎬 Movie</button>
+            <button class="eq-btn" data-eq="music" onclick="window.soundbarRemote.setEq('music')">🎵 Music</button>
+            <button class="eq-btn" data-eq="voice" onclick="window.soundbarRemote.setEq('voice')">🎙️ Voice</button>
+            <button class="eq-btn" data-eq="night" onclick="window.soundbarRemote.setEq('night')">🌙 Night</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           6. AUTOMATION & MACROS PANEL
+           ==================================================================== -->
+      <section class="remote-panel" id="panelMacros">
+        <div>
+          <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 12px; display: block;">1-Tap Smart Automation</span>
+          <div class="macro-cards-grid">
+            
+            <div class="macro-card" onclick="window.macroController.runMovieMode()">
+              <div class="macro-info">
+                <div class="macro-icon-box movie">🎬</div>
+                <div class="macro-details">
+                  <h4>Movie Mode</h4>
+                  <p>TV On + Netflix + Cinema EQ + AC 24°C</p>
+                </div>
+              </div>
+              <span class="macro-run-btn">Run</span>
+            </div>
+
+            <div class="macro-card" onclick="window.macroController.runGamingMode()">
+              <div class="macro-info">
+                <div class="macro-icon-box gaming">🎮</div>
+                <div class="macro-details">
+                  <h4>Gaming Mode</h4>
+                  <p>HDMI 1 + Soundbar Bass Boost + AC 22°C</p>
+                </div>
+              </div>
+              <span class="macro-run-btn">Run</span>
+            </div>
+
+            <div class="macro-card" onclick="window.macroController.runNightMode()">
+              <div class="macro-info">
+                <div class="macro-icon-box night">🌙</div>
+                <div class="macro-details">
+                  <h4>Night Mode</h4>
+                  <p>Turn off TV & Soundbar + AC 26°C Eco</p>
+                </div>
+              </div>
+              <span class="macro-run-btn">Run</span>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Voice Control Modal Sheet -->
+  <div class="voice-modal-overlay" id="voiceModal">
+    <div class="voice-modal-content">
+      <button id="voiceCloseBtn" style="position: absolute; top: 14px; right: 14px; background: none; border: none; color: var(--text-muted); font-size: 1.2rem; cursor: pointer;">✕</button>
+      
+      <h3 style="font-size: 1.1rem; font-weight: 700;">Smart Bilingual Voice Assistant</h3>
+      <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">English & Hindi Voice Commands</p>
+
+      <canvas class="voice-waveform-canvas" id="voiceWaveform" width="320" height="80"></canvas>
+
+      <div class="voice-transcript-text" id="voiceTranscript">Listening... / Sun raha hoon...</div>
+
+      <div class="voice-mic-circle" id="voiceMicCircle">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+          <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+          <line x1="12" y1="19" x2="12" y2="22"></line>
+        </svg>
+      </div>
+
+      <div class="voice-sub-hint">
+        Try saying: <em>"TV chalu karo"</em>, <em>"Volume up"</em>, <em>"Open YouTube"</em>, or <em>"Movie Mode"</em>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Connect / Info Modal -->
+  <div class="voice-modal-overlay" id="infoModal">
+    <div class="voice-modal-content" style="text-align: left; align-items: flex-start;">
+      <button id="infoCloseBtn" style="position: absolute; top: 14px; right: 14px; background: none; border: none; color: var(--text-muted); font-size: 1.2rem; cursor: pointer;">✕</button>
+      
+      <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 8px;">📱 Connect Mobile Phone</h3>
+      <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 12px;">
+        To control this PC and all your smart devices from your mobile phone, ensure both devices are connected to the same Wi-Fi network and open:
+      </p>
+
+      <div style="background: rgba(0, 240, 255, 0.1); border: 1px solid var(--accent-cyan); border-radius: var(--radius-sm); padding: 10px 14px; font-family: monospace; font-size: 0.95rem; color: var(--accent-cyan); width: 100%; word-break: break-all;" id="localIpDisplay">
+        http://localhost:8080
+      </div>
+
+      <div style="margin-top: 16px; font-size: 0.8rem; color: var(--text-muted); line-height: 1.6;">
+        ⚡ <strong>Features enabled:</strong><br>
+        • Real-time Touchpad Mouse & Smooth Scrolling<br>
+        • Full Smart TV, AC & Airtel DTH remotes<br>
+        • Bilingual Voice Control (Hindi & English)<br>
+        • High-Contrast Elder Mode
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="js/connection.js"></script>
+  <script src="js/pc-remote.js"></script>
+  <script src="js/tv-remote.js"></script>
+  <script src="js/airtel-remote.js"></script>
+  <script src="js/ac-remote.js"></script>
+  <script src="js/soundbar-remote.js"></script>
+  <script src="js/voice-remote.js"></script>
+  <script src="js/macros.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

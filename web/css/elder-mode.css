@@ -1,0 +1,114 @@
+/* SmartRemote Pro - Elder Mode Theme (High Contrast & Big Buttons) */
+body.elder-mode {
+  background: #000000 !important;
+}
+
+body.elder-mode .app-container {
+  background: #050505 !important;
+  border-color: #333333 !important;
+}
+
+body.elder-mode .top-nav-bar {
+  background: #000000 !important;
+  border-bottom: 2px solid #ffffff !important;
+  padding: 18px 20px !important;
+}
+
+body.elder-mode .brand-badge h1 {
+  font-size: 1.3rem !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+body.elder-mode .tab-pill {
+  padding: 12px 18px !important;
+  font-size: 1.05rem !important;
+  border: 2px solid #555555 !important;
+  background: #111111 !important;
+  color: #ffffff !important;
+}
+
+body.elder-mode .tab-pill.active {
+  background: #ffd700 !important;
+  color: #000000 !important;
+  border-color: #ffd700 !important;
+  font-weight: 800 !important;
+}
+
+body.elder-mode .tactile-btn {
+  min-height: 84px !important;
+  font-size: 1.25rem !important;
+  font-weight: 800 !important;
+  border: 3px solid #ffffff !important;
+  background: #111111 !important;
+  color: #ffffff !important;
+  border-radius: 18px !important;
+}
+
+body.elder-mode .tactile-btn:active {
+  background: #ffd700 !important;
+  color: #000000 !important;
+}
+
+body.elder-mode .tactile-btn.danger {
+  background: #ff0033 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+body.elder-mode .dpad {
+  width: 260px !important;
+  height: 260px !important;
+  background: #111111 !important;
+  border: 3px solid #ffffff !important;
+}
+
+body.elder-mode .dpad-center {
+  width: 100px !important;
+  height: 100px !important;
+  font-size: 1.35rem !important;
+  background: #ffd700 !important;
+  color: #000000 !important;
+  border: 2px solid #000000 !important;
+}
+
+body.elder-mode .dpad-btn {
+  color: #ffffff !important;
+}
+
+body.elder-mode .dpad-up { top: 16px !important; }
+body.elder-mode .dpad-down { bottom: 16px !important; }
+body.elder-mode .dpad-left { left: 16px !important; }
+body.elder-mode .dpad-right { right: 16px !important; }
+
+body.elder-mode .rocker-card {
+  border: 3px solid #ffffff !important;
+  background: #111111 !important;
+  padding: 12px !important;
+}
+
+body.elder-mode .rocker-btn {
+  padding: 24px 0 !important;
+  font-size: 1.6rem !important;
+  color: #ffffff !important;
+}
+
+body.elder-mode .rocker-label {
+  font-size: 1rem !important;
+  color: #ffd700 !important;
+  font-weight: 800 !important;
+}
+
+body.elder-mode .numpad-btn {
+  padding: 22px !important;
+  font-size: 1.6rem !important;
+  font-weight: 800 !important;
+  border: 2px solid #ffffff !important;
+  background: #111111 !important;
+  color: #ffffff !important;
+}
+
+body.elder-mode .numpad-btn:active {
+  background: #ffd700 !important;
+  color: #000000 !important;
+}
