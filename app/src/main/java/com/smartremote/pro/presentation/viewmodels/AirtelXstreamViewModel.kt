@@ -39,14 +39,26 @@ class AirtelXstreamViewModel(
     private val _searchQuery = MutableStateFlow("")
     private val _lastDispatchedKey = MutableStateFlow<String?>(null)
 
-    val uiState: StateFlow<AirtelXstreamUiState> = combine(
+    private val _channelsFlow = combine(
         channelRepository.getAllChannels(),
         channelRepository.getFavoriteChannels(),
-        channelRepository.getRecentChannels(),
+        channelRepository.getRecentChannels()
+    ) { all, favs, recents ->
+        Triple(all, favs, recents)
+    }
+
+    private val _filterFlow = combine(
         _selectedCategory,
         _searchQuery,
         _lastDispatchedKey
-    ) { allChannels, favs, recents, category, query, lastKey ->
+    ) { category, query, lastKey ->
+        Triple(category, query, lastKey)
+    }
+
+    val uiState: StateFlow<AirtelXstreamUiState> = combine(
+        _channelsFlow,
+        _filterFlow
+    ) { (allChannels, favs, recents), (category, query, lastKey) ->
         val filtered = allChannels.filter { channel ->
             (category == "All" || channel.category.equals(category, ignoreCase = true)) &&
                     (query.isBlank() || channel.name.contains(query, ignoreCase = true) || channel.number.toString().contains(query))
