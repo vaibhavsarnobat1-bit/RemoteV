@@ -39,3 +39,4 @@ val RemoteButtonPressed = ElectricBlue
 val TextPrimary = TextPrimaryDark
 val TextMuted = TextSecondary
 val GreenSuccess = SuccessGreen
+val BorderDark = Color(0xFF334155)

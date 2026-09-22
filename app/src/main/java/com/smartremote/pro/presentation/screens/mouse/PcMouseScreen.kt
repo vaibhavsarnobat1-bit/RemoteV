@@ -17,6 +17,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.input.pointer.PointerInputChange
+import androidx.compose.ui.input.pointer.PointerInputScope
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.text.font.FontWeight
@@ -125,7 +128,7 @@ fun PcMouseScreen(
                     ) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Text(text = title, fontSize = 11.sp, fontWeight = FontWeight.Bold)
-                            Text(text = subtitle, fontSize = 9.sp, fontWeight = FontWeight.Normal, opacity = 0.8f)
+                            Text(text = subtitle, fontSize = 9.sp, fontWeight = FontWeight.Normal, color = TextSecondary.copy(alpha = 0.8f))
                         }
                     }
                 }
@@ -151,7 +154,7 @@ fun PcMouseScreen(
                                 .background(MaterialTheme.colorScheme.surface)
                                 .border(1.5.dp, BorderDark, RoundedCornerShape(16.dp))
                                 .pointerInput(Unit) {
-                                    detectDragGestures { change, dragAmount ->
+                                    detectDragGestures { change: PointerInputChange, dragAmount: Offset ->
                                         change.consume()
                                         controller.moveCursor(
                                             (dragAmount.x * 1.8f).toInt(),
@@ -200,7 +203,7 @@ fun PcMouseScreen(
                                 .background(MaterialTheme.colorScheme.surface)
                                 .border(1.dp, BorderDark, RoundedCornerShape(16.dp))
                                 .pointerInput(Unit) {
-                                    detectDragGestures { change, dragAmount ->
+                                    detectDragGestures { change: PointerInputChange, dragAmount: Offset ->
                                         change.consume()
                                         val delta = if (dragAmount.y > 0) -1 else 1
                                         controller.scrollWheel(delta)

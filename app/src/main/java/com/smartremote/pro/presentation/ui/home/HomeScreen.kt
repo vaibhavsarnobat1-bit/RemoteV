@@ -70,6 +70,7 @@ data class QuickActionItem(
 fun HomeScreen(
     viewModel: HomeViewModel,
     onDeviceClick: (Device) -> Unit,
+    onQuickMacroClick: () -> Unit = {},
     onVoiceSearchClick: () -> Unit = {},
     onSettingsClick: () -> Unit = {},
     onAddNewDeviceClick: () -> Unit = {},
